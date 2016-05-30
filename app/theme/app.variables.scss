@@ -1,0 +1,21 @@
+
+// http://ionicframework.com/docs/v2/theming/
+
+// Ionic Shared Functions
+// --------------------------------------------------
+// Makes Ionic Sass functions available to your App
+
+@import 'globals.core';
+$colors: (
+  primary: (
+    base: #327eff,
+    contrast: #ffff00
+  ),
+  secondary: (
+    base: #32db64,
+    contrast: #ff69b4
+  ),
+  danger: #d91e18,
+  light: #f4f4f4,
+  dark: #222
+);

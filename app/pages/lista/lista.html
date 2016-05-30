@@ -1,0 +1,84 @@
+
+<ion-navbar *navbar hideBackButton class="show-navbar android-attr">
+  <button menuToggle>
+    <ion-icon name="menu"></ion-icon>
+  </button>
+  <ion-title>{{tit}}</ion-title>
+</ion-navbar>
+
+<ion-content class="has-header" >
+
+
+   <div padding>
+    <ion-segment [(ngModel)]="tipo">
+      <ion-segment-button value="Lista">
+        {{lista}}
+      </ion-segment-button>
+      <ion-segment-button  (click)="showMap()" value="Mapa">
+        {{mapa}}
+      </ion-segment-button>
+      <ion-segment-button value="Galeria">
+        {{galeria}}
+      </ion-segment-button>
+    </ion-segment>
+  </div>
+
+  <div id="switch" [ngSwitch]="tipo">
+    <ion-list *ngSwitchWhen="'Lista'">
+      <ion-item *ngIf="section === 'Playas'">
+
+        <ion-label>{{filtrar}}</ion-label>
+        <ion-select [(ngModel)]="filter" (change)="filterList(filter)">
+          <ion-option value="Todas">{{todas}}</ion-option>
+          <ion-option value="Q">{{certificado_q}}</ion-option>
+          <ion-option value="adaptadas">{{adaptadass}}</ion-option>
+        </ion-select>
+      </ion-item>
+      <div *ngIf="section !== 'Playas'">
+      <ion-item   *ngFor="#item of items"  (click)="itemTapped($event,item)">
+        <ion-thumbnail item-left>
+          <img [src]="item['images'][0].image">
+        </ion-thumbnail>
+        <h2>{{item.title}}</h2>
+      </ion-item>
+    </div>
+    <div *ngIf="section === 'Playas'">
+        <ion-item   *ngFor="#estado of estados"  (click)="itemTapped($event,estado)">
+          <ion-thumbnail item-left>
+            <img [src]="estado['bandera']">
+          </ion-thumbnail>
+          <h2>{{estado["nombre"]}}</h2>
+        </ion-item>
+    </div>
+    </ion-list>
+
+
+    <div id="container-map" *ngSwitchWhen="'Mapa'">
+      <div id="map" ></div>
+      <button clear (click)="calculateAndDisplayRoute()">
+        <ion-icon name='navigate'></ion-icon>
+      {{ruta}}
+      </button>
+    </div>
+
+    <div id="gallery"  *ngSwitchWhen="'Galeria'" class="card-background-page">
+      <div *ngIf="section !== 'Playas'">
+      <ion-card *ngFor='#item of items' (click)="itemTapped($event,item)">
+        <img [src]="item.images[0].image" />
+        <div class="card-title">{{item.title}}</div>
+      </ion-card>
+    </div>
+    <div *ngIf="section === 'Playas'">
+      <ion-card *ngFor='#estado of estados' (click)="itemTapped($event,estado)">
+        <img [src]="estado['bandera']">
+        <div class="card-title">{{estado["nombre"]}}</div>
+      </ion-card>
+    </div>
+    </div>
+
+
+  </div>
+
+
+
+</ion-content>

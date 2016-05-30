@@ -1,0 +1,38 @@
+{
+  "dependencies": {
+    "angular2": "2.0.0-beta.15",
+    "es6-promise": "3.0.2",
+    "es6-shim": "^0.35.0",
+    "ionic-angular": "2.0.0-beta.6",
+    "ionic-native": "^1.1.0",
+    "ionicons": "3.0.0-alpha.3",
+    "moment": "^2.12.0",
+    "reflect-metadata": "0.1.2",
+    "rxjs": "5.0.0-beta.2",
+    "zone.js": "^0.6.11"
+  },
+  "devDependencies": {
+    "awesome-typescript-loader": "0.15.10",
+    "del": "2.2.0",
+    "ionic-gulp-scripts-copy":"^1.0.1",
+    "gulp": "3.9.1",
+    "gulp-autoprefixer": "^3.1.0",
+    "gulp-sass": "2.2.0",
+    "gulp-watch": "4.3.5",
+    "strip-sourcemap-loader": "0.0.1",
+    "typescript": "1.7.5",
+    "webpack": "1.12.14"
+  },
+  "name": "playas-2016",
+  "description": "playas-2016: An Ionic project",
+  "cordovaPlugins": [
+    "cordova-plugin-x-socialsharing",
+    "cordova-plugin-whitelist",
+    "cordova-plugin-geolocation",
+    "cordova-plugin-inappbrowser"
+  ],
+  "cordovaPlatforms": [
+    "android",
+    "ios"
+  ]
+}

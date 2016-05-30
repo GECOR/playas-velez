@@ -1,0 +1,61 @@
+
+<ion-navbar *navbar hideBackButton class="show-navbar android-attr">
+  <button menuToggle>
+    <ion-icon name="menu"></ion-icon>
+  </button>
+  <ion-title>{{tit}}</ion-title>
+</ion-navbar>
+
+ <ion-content>
+ <ion-card>
+    <ion-card-header>
+      {{idioma}}
+    </ion-card-header>
+    <ion-list radio-group>
+      <ion-item >
+        <ion-icon  item-left><img src="img/spain_flag_32.png"></ion-icon>
+        <ion-label>Español</ion-label>
+      <ion-radio checked="{{lang.es}}" (click)="selectLang('es')"></ion-radio>
+      </ion-item>
+
+      <ion-item>
+        <ion-icon  item-left><img src="img/catalonia_32.png"></ion-icon>
+        <ion-label>Catalán</ion-label>
+      <ion-radio  checked="{{lang.ca}}" (click)="selectLang('ca')"></ion-radio>
+      </ion-item>
+
+      <ion-item>
+        <ion-icon  item-left><img src="img/basque_country_32.png"></ion-icon>
+        <ion-label>Euskera</ion-label>
+      <ion-radio  checked="{{lang.eu}}" (click)="selectLang('eu')"></ion-radio>
+      </ion-item>
+
+      <ion-item>
+        <ion-icon  item-left><img src="img/united_kingdom_flag_32.png"></ion-icon>
+        <ion-label>English</ion-label>
+      <ion-radio  checked="{{lang.en}}" (click)="selectLang('en')"></ion-radio>
+      </ion-item>
+
+      <ion-item>
+        <ion-icon  item-left><img src="img/germany_flag_32.png"></ion-icon>
+        <ion-label>German</ion-label>
+      <ion-radio  checked="{{lang.de}}" (click)="selectLang('de')"></ion-radio>
+      </ion-item>
+
+      <ion-item>
+      <ion-icon  item-left><img src="img/france_flag_32.png"></ion-icon>
+      <ion-label>French</ion-label>
+    <ion-radio checked="{{lang.fr}}" (click)="selectLang('fr')"></ion-radio>
+      </ion-item>
+
+    </ion-list>
+  </ion-card>
+
+  <ion-list>
+    <ion-item>
+      <ion-label>{{datos_moviles}}</ion-label>
+      <ion-toggle   checked="{{onlineMode}}" (click)="toggleClick(onlineMode)"></ion-toggle>
+    </ion-item>
+  </ion-list>
+
+</ion-content>
