@@ -1,5 +1,5 @@
 import {Page, NavController,NavParams,Alert,Platform,Loading} from 'ionic-angular';
-import {NgZone} from 'angular2/core';
+import {NgZone} from '@angular/core';
 import {SocialSharing} from 'ionic-native';
 import {Translator} from '../../../providers/translator';
 import {Moraga} from './moraga/moraga';

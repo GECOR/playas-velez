@@ -1,14 +1,13 @@
 /// <reference path="../../../../../typings/tsd.d.ts"/>
 
 import {Page, NavController, NavParams,Modal,Platform,ViewController,Alert} from 'ionic-angular';
-import {NgZone} from 'angular2/core';
 import {Parser} from '../../../../providers/parser';
 import {Translator} from '../../../../providers/translator';
 import {Events} from 'ionic-angular';
-import {Component, ViewContainerRef, Input, Output, EventEmitter, AfterViewInit} from 'angular2/core';
-import {NgIf, NgFor, NgClass, NgModel, FORM_DIRECTIVES, ControlValueAccessor} from 'angular2/common';
+import {Component, ViewContainerRef, Input, Output, EventEmitter, AfterViewInit, NgZone} from '@angular/core';
+import {NgIf, NgFor, NgClass, NgModel, FORM_DIRECTIVES, ControlValueAccessor} from '@angular/common';
 import * as moment_ from 'moment';
-import {Http,Headers, RequestOptions} from 'angular2/http';
+import {Http,Headers, RequestOptions} from '@angular/http';
 const moment: moment.MomentStatic = (<any>moment_)['default'] || moment_;
 
 @Page({

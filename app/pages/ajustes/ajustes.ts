@@ -1,5 +1,5 @@
 import {Page, NavController, NavParams} from 'ionic-angular';
-import {NgZone} from 'angular2/core';
+import {NgZone} from '@angular/core';
 import {Parser} from '../../providers/parser';
 import {Translator} from '../../providers/translator';
 import {Events} from 'ionic-angular';
@@ -53,7 +53,7 @@ export class Ajustes{
           this.lang[l] = false;
         }
       });
-      
+
     });
 
   }

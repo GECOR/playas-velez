@@ -1,5 +1,5 @@
 import {Page, NavController, NavParams,Alert,Loading} from 'ionic-angular';
-import {NgZone} from 'angular2/core';
+import {NgZone} from '@angular/core';
 import {DetallePage} from './detalle/detalle';
 import {Parser} from '../../providers/parser';
 import {Translator} from '../../providers/translator';
@@ -30,7 +30,7 @@ export class Lista {
     mapa: string;
     galeria: string;
     ruta: string;
-    all_items = [];
+    all_estados = [];
     filtrar : string;
     todas: string;
     certificado_q : string;
@@ -59,12 +59,12 @@ export class Lista {
       this.section = this.params.get('section');
         this.estados = this.params.get('estados');;
         console.log(Object.keys(this.estados[0]))
-
+        this.all_estados = this.estados;
 
 
       this.parser.getItems(this.idx).then(lista =>{
         this.items = lista;
-        this.all_items = lista;
+       
         console.log("hola",this.items);
         loading.dismiss();
       });
@@ -263,6 +263,7 @@ attachInstructionText(marker, text, stepDisplay) {
 
     itemTapped(event, item) {
       console.log("estado",item);
+      console.log(this.nav);
       if(this.section === 'Playas'){
         let item1= this.items.filter(this.childForItem(item.idItem))[0];
 
@@ -295,17 +296,32 @@ attachInstructionText(marker, text, stepDisplay) {
 
     filterList(filter){
 
+   
 
-      console.log(this.all_items);
+      
 
       this._ngZone.run(() => {
-        this.items  = this.all_items;
+        this.estados  = this.all_estados;
         if(filter === 'adaptadas'){
-          this.items = this.items.filter(this.adaptadas);
+          let aux ;
+          aux= this.items.filter(this.adaptadas);
+          this.estados = [];
+
+          for(var i = 0; i< aux.length;i++){
+            this.estados.push(this.all_estados.filter(this.childForItem(aux[i].idItem))[0]);
+          }          
+          
 
         }else if (filter === 'Q') {
-          this.items = this.items.filter(this.Q);
+          //this.estados = this.items.filter(this.Q);
+           let aux ;
+          aux = this.items.filter(this.Q);
+          this.estados = [];
+          for(var i = 0; i< aux.length;i++){
+            this.estados.push(this.all_estados.filter(this.childForItem(aux[i].idItem))[0]);
+          }          
         }
+        console.log(this.estados);
 
       })
     }

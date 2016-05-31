@@ -35,7 +35,7 @@
         </ion-select>
       </ion-item>
       <div *ngIf="section !== 'Playas'">
-      <ion-item   *ngFor="#item of items"  (click)="itemTapped($event,item)">
+      <ion-item   *ngFor="let item of items"  (click)="itemTapped($event,item)">
         <ion-thumbnail item-left>
           <img [src]="item['images'][0].image">
         </ion-thumbnail>
@@ -43,7 +43,7 @@
       </ion-item>
     </div>
     <div *ngIf="section === 'Playas'">
-        <ion-item   *ngFor="#estado of estados"  (click)="itemTapped($event,estado)">
+        <ion-item   *ngFor="let estado of estados"  (click)="itemTapped($event,estado)">
           <ion-thumbnail item-left>
             <img [src]="estado['bandera']">
           </ion-thumbnail>
@@ -63,13 +63,13 @@
 
     <div id="gallery"  *ngSwitchWhen="'Galeria'" class="card-background-page">
       <div *ngIf="section !== 'Playas'">
-      <ion-card *ngFor='#item of items' (click)="itemTapped($event,item)">
+      <ion-card *ngFor='let item of items' (click)="itemTapped($event,item)">
         <img [src]="item.images[0].image" />
         <div class="card-title">{{item.title}}</div>
       </ion-card>
     </div>
     <div *ngIf="section === 'Playas'">
-      <ion-card *ngFor='#estado of estados' (click)="itemTapped($event,estado)">
+      <ion-card *ngFor='let estado of estados' (click)="itemTapped($event,estado)">
         <img [src]="estado['bandera']">
         <div class="card-title">{{estado["nombre"]}}</div>
       </ion-card>

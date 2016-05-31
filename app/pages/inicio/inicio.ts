@@ -1,21 +1,18 @@
-import {App, IonicApp, Platform,NavController,Loading} from 'ionic-angular';
-import {Http} from 'angular2/http';
+import {Page, IonicApp, Platform,NavController,Loading} from 'ionic-angular';
+import {Http} from '@angular/http';
 import {Lista} from '../lista/lista';
 import {Parser} from '../../providers/parser';
 import {Ajustes} from '../ajustes/ajustes';
 import {Translator} from '../../providers/translator';
-import {NgZone} from 'angular2/core';
-import {Component} from 'angular2/core';
+import {NgZone, Component,ViewChild} from '@angular/core';
 import {Events} from 'ionic-angular';
 import {Tiempo} from '../tiempo/tiempo';
 import {Banderas} from '../../providers/banderas';
 
-@App({
+@Page({
   templateUrl: 'build/pages/inicio/inicio.html',
-  providers: [Parser,Translator,Banderas],
-  config: {
-    backButtonText: ''
-  } // http://ionicframework.com/docs/v2/api/config/Config/
+  providers: [Parser,Translator,Banderas]
+  
 })
 
 export class Inicio {
@@ -38,12 +35,13 @@ export class Inicio {
     private banderas : Banderas,
     private translator: Translator,
     private _ngZone: NgZone,
-    public events: Events) {
+    public events: Events,
+    private nav: NavController) {
 
 
 
       let loading = Loading.create({content:""});
-      this.app.getComponent('nav') && this.app.getComponent('nav').present(loading);
+      this.nav && this.nav.present(loading);
 
     if(!localStorage.getItem('lang')){
       localStorage.setItem('lang','es');
@@ -139,27 +137,27 @@ export class Inicio {
       }
 
     }
-    this.app.getComponent('nav') && loading.dismiss();
+    this.nav && loading.dismiss();
   }
   openPage(page) {
     // Reset the content nav to have just this page
     // we wouldn't want the back button to show in this scenario
 
-
+    console.log(this.nav);
 
 
     if(page === 'Ajustes'){
-      this.app.getComponent('nav').setRoot(Ajustes,{
+      this.nav.setRoot(Ajustes,{
         "tit":'Ajustes',
         "section":'Ajustes',
 
       });
 
     }else if(page === 'Tiempo'){
-      this.app.getComponent('nav').setRoot(Tiempo);
+      this.nav.setRoot(Tiempo);
     }else {
 
-      this.app.getComponent('nav').setRoot(page.component,{
+      this.nav.setRoot(page.component,{
         "tit":page.title,
         "section":page.section,
         "index":page.idx,
