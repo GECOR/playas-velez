@@ -59,14 +59,23 @@ export class Lista {
       this.idx = this.params.get('index');
       this.idTypeItem = this.params.get('idTypeItem');
       this.section = this.params.get('section');
-        this.estados = this.params.get('estados');;
+        this.estados = this.params.get('estados');
+        
+        
+        
         console.log(Object.keys(this.estados[0]))
         this.all_estados = this.estados;
 
 
       this.parser.getItems(this.idx).then(lista =>{
         this.items = lista;
-       
+        if(this.section = 'Playas'){
+          this.estados.forEach(estado =>{
+          let item1= this.items.filter(this.childForItem(estado.idItem))[0];
+          estado.rightBarColor = item1.rightBarColor;
+          estado.backgroundImage = item1.backgroundImage;
+        })
+        }
         console.log("hola",this.items);
         loading.dismiss();
       });
