@@ -43,12 +43,20 @@
 
       <ion-input type="text" [(ngModel)]="newMoraga.TlfMovil" placeholder="Teléfono Móvil"></ion-input>
     </ion-item>
-
+    
     <ion-item>
-      <ion-input  type="text"  placeholder="Fecha" [(ngModel)]="newMoraga.Dia" (click)="openModal()"></ion-input>
+      <ion-input  type="text"  placeholder="Fecha" [(ngModel)]="newMoraga.Dia" (click)="openModal('fecha')"></ion-input>
     </ion-item>
     <ion-item>
       <ion-input  type="text"  [(ngModel)]="newMoraga.NumAsistentes" placeholder="Nº Personas" ></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-textarea  type="text"  [(ngModel)]="newMoraga.Observaciones" placeholder="Observaciones: Sólo se aceptarán moragas y no pesca, acampadas u otro motivo" ></ion-textarea>
+    </ion-item>
+    <ion-item>
+      
+      <ion-checkbox dark checked="false" [(ngModel)]="aviso" (click)="openModal('aviso')"></ion-checkbox>
+      <ion-label>Aviso Legal</ion-label>
     </ion-item>
       <div padding>
       <button type="submit"  class="button button-block button-positive">Enviar solicitud</button>
