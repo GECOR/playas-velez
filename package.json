@@ -36,15 +36,13 @@
     "tslint-eslint-rules": "^1.3.0"
   },
   "cordovaPlugins": [
-    "cordova-plugin-crosswalk-webview",
-    "cordova-plugin-globalization",
     "cordova-plugin-x-socialsharing",
     "cordova-plugin-whitelist",
     "cordova-plugin-geolocation",
     "cordova-plugin-inappbrowser"
   ],
   "cordovaPlatforms": [
-    "ios",
-    "android"
+    "cordova-ios@4.0.0",
+    "android@5.0.0"
   ]
 }

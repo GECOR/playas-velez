@@ -162,7 +162,7 @@ initGeolocation() {
       });
     },
     (error) => {
-
+     
       let alert = Alert.create({
       title: error.code.toString(),
       subTitle: error.message,

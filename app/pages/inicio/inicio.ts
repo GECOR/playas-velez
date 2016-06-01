@@ -48,7 +48,7 @@ export class Inicio {
     }
 
     this.estados = JSON.parse(localStorage.getItem('banderas'));
-    this.estados = this.estados.playas;
+    this.estados = this.estados && this.estados.playas;
 
 
     parser.load(); // Download JSON data

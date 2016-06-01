@@ -56,8 +56,8 @@ export class Moraga{
 
 
   onSubmit(){
-
-    this.newMoraga.PlayaID = this.playa.id;
+    if(this.checkFields()){
+      this.newMoraga.PlayaID = this.playa.id;
     this.newMoraga.Playa = this.playa.nombre;
       console.log(this.playa);
       let body = JSON.stringify(this.newMoraga);
@@ -65,7 +65,121 @@ export class Moraga{
       let options = new RequestOptions({ headers: headers });
       this.http.post('http://192.168.1.125/ApiVelez/api/Moraga/',body,options).subscribe(res =>{
     })
+    }
+    
   }
+  
+  checkDNI(dni: String){
+    dni = dni.toUpperCase();
+    if(dni.length !== 9){
+      return false;
+    }
+    let letras = ['T','R','W','A','G','M','Y','F','P','D','X','B','N','J','Z','S','Q','V','H','L','C','K','E'];
+    
+    let regExp = /[XYZ0-9]/;
+    
+    if(!regExp.test(""+dni.charAt(0))){
+      return false;
+    }
+    
+    if(dni.charAt(0) === 'X'){
+        dni = dni.replace('X','0');
+      }else if(dni.charAt(0) === 'Y'){
+        dni = dni.replace('Y','1');
+      }else if(dni.charAt(0) === 'Z'){ 
+        dni = dni.replace('Z','2');
+      }
+      
+    let resto = parseInt(dni.substring(0,8)) % 23;
+    if(dni.charAt(8) !== letras[resto]){
+      return false;
+    }
+    
+    return true;
+  }
+  
+  checkCodPost(codPost){
+    if(codPost.length !== 5){
+      return false;
+    }
+    let filter = /^([0-5][0-9]*)|(AD[0-9]*)$/ // No es un filtro perfecto, pero evita algunos códigos postales falsos
+    
+    if(!filter.test(codPost)){
+      return false;
+    }
+    return true;
+  }
+  
+  checkEmail(email){
+    let filter = /^[a-zA-Z_\-.0-9]+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/;
+    if(!filter.test(email)){
+      return false;
+    }
+    return true;
+  }
+  checkTlfMovil(tlfMovil : string){
+  
+    if(tlfMovil.length !== 12){
+      return false;
+    }
+    
+    let filter = /^\+[0-9]*$/
+    
+    if(!filter.test(tlfMovil)){
+      return false;
+    }
+    return true;
+    
+  }
+  
+  showAlert(title, subTitle, okButton){
+    let alert = Alert.create({
+      title: title,
+      subTitle: subTitle,
+      buttons: [okButton]
+    });
+    this.nav.present(alert);
+  }
+  checkFields(){
+    var ok = true;
+    
+    if (this.newMoraga.Nombre === ''){
+      ok = false;
+      this.showAlert("Atention", "Please write a name", "OK");
+      return ok;
+    }
+    if (this.newMoraga.Apellidos === ''){
+      ok = false;
+      this.showAlert("Atention", "Please write a surname", "OK");
+      return ok;
+    }
+    if (this.newMoraga.DNI === '' || !this.checkDNI(this.newMoraga.DNI)){
+      ok = false;
+      this.showAlert("Atention", "Please Insert a correct DNI", "OK");
+      return ok;
+    }
+    if (this.newMoraga.CodPost === '' || !this.checkCodPost(this.newMoraga.CodPost)){
+      ok = false;
+      this.showAlert("Atention", "Please insert a correct Codigo postal", "OK");
+      return ok;
+    }
+    if (this.newMoraga.Email === '' || !this.checkEmail(this.newMoraga.Email)){
+      ok = false;
+      this.showAlert("Atention", "Please insert a correct Email", "OK");
+      return ok;
+    }
+    if (this.newMoraga.TlfMovil === '' || !this.checkTlfMovil(this.newMoraga.TlfMovil)){
+      ok = false;
+      this.showAlert("Atention", "Please insert a correct Teléfono móvil\n Ej:(+34654363636)", "OK");
+      return ok;
+    }
+
+    
+   
+    
+    return ok;
+  }
+  
   openModal() {
     let modal = Modal.create(ModalsContentPage);
    modal.onDismiss(data => {

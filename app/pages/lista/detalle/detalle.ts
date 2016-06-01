@@ -232,4 +232,6 @@ export class DetallePage {
     SocialSharing.share(message,subject,file,url);
 
   }
+  
+  
 }

@@ -46,7 +46,7 @@ class MyApp {
     public events: Events) {
 
 this.estados = JSON.parse(localStorage.getItem('banderas'));
-    this.estados = this.estados.playas;
+    this.estados = this.estados && this.estados.playas;
 
     this.initializeApp();
 
