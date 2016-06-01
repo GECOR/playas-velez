@@ -7,7 +7,6 @@ import {Translator} from '../../providers/translator';
 import {NgZone, Component,ViewChild} from '@angular/core';
 import {Events} from 'ionic-angular';
 import {Banderas} from '../../providers/banderas';
-
 @Page({
   templateUrl: 'build/pages/inicio/inicio.html',
   providers: [Parser,Translator,Banderas]
@@ -66,6 +65,7 @@ export class Inicio {
       this.importancia3 = new Array();
 
       this.parser.getTypeItems().then(typeItems => {
+        
         this.insertTypeItems(typeItems,loading);
 
       }).catch(err =>{
