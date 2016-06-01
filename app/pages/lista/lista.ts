@@ -37,6 +37,7 @@ export class Lista {
     adaptadass : string;
     section: string;
     estados =[];
+    idTypeItem : number;
     constructor(private nav: NavController, private params : NavParams, private parser: Parser, private banderas : Banderas, private _ngZone: NgZone,private translator: Translator) {
       let loading = Loading.create({content:""});
       this.nav.present(loading);
@@ -56,6 +57,7 @@ export class Lista {
 
       this.tit = this.params.get('tit');
       this.idx = this.params.get('index');
+      this.idTypeItem = this.params.get('idTypeItem');
       this.section = this.params.get('section');
         this.estados = this.params.get('estados');;
         console.log(Object.keys(this.estados[0]))

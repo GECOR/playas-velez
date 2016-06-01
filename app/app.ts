@@ -24,7 +24,7 @@ class MyApp {
   @ViewChild(Nav) nav: Nav;
    
   rootPage: any = Inicio;
-  pages: Array<{idx: number,title: string,section: string,importance: number,img: string, component: any}>
+  pages: Array<{idx: number,idTypeItem:number,title: string,section: string,importance: number,img: string, component: any}>
   data: any;
   translator_object : string;
   importancia1: any[];
@@ -64,7 +64,6 @@ this.estados = JSON.parse(localStorage.getItem('banderas'));
     translator.load().then(data =>{
       this.ajustes = data[localStorage.getItem('lang')]['TIT_AJUSTES'];
       this.inicio = data[localStorage.getItem('lang')]['INICIO'];
-      this.tiempo = data[localStorage.getItem('lang')]['TIEMPO'];
       console.log(this.ajustes);
       this.translator_object = data;
 
@@ -76,6 +75,7 @@ this.estados = JSON.parse(localStorage.getItem('banderas'));
         var i = 0;
         typeItems.forEach(typeItem => {
           this.pages.push({ idx: i,
+                            idTypeItem: typeItem.idTypeItem,
                             title: typeItem[localStorage.getItem('lang')] || typeItem.type,
                             section: typeItem.type,
                             importance: typeItem.importance,
@@ -104,7 +104,6 @@ this.estados = JSON.parse(localStorage.getItem('banderas'));
     events.subscribe('lang:changed', (lang) => {
       this.ajustes = this.translator_object[lang[0]]['TIT_AJUSTES'];
       this.inicio = this.translator_object[lang[0]]['INICIO'];
-      this.tiempo =  this.translator_object[lang[0]]['TIEMPO'];
       console.log(this.ajustes);
       this.pages = new Array();
       this.importancia1 = new Array();
@@ -114,6 +113,7 @@ this.estados = JSON.parse(localStorage.getItem('banderas'));
         var i = 0;
         typeItems.forEach(typeItem => {
           this.pages.push({ idx: i,
+                            idTypeItem: typeItem.idTypeItem,
                             title: typeItem[lang[0]] || typeItem.type,
                             section: typeItem.type,
                             importance: typeItem.importance,
@@ -185,7 +185,8 @@ this.estados = JSON.parse(localStorage.getItem('banderas'));
         "tit":page.title,
         "section":page.section,
         "index":page.idx,
-        "estados": this.estados
+        "estados": this.estados,
+        "idTypeItem": page.idTypeItem
       });
     }
 

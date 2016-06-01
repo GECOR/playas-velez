@@ -16,7 +16,19 @@
     "ADAPTADAS": "Adaptadas",
     "TODAS" : "Todas",
     "INICIO": "Inicio",
-    "TIEMPO": "Tiempo"
+    "TIEMPO": "Tiempo",
+    "TIT_MODAL_FECHA": "Fecha",
+    "TIT_MODAL_AVISO": "Aviso Legal",
+    "FORM_NOMBRE": "Nombre",
+    "FORM_APELLIDOS": "Apellidos",
+    "FORM_DNI": "DNI",
+    "FORM_DIRECCION": "Dirección",
+    "FORM_CODPOST": "Código Postal",
+    "FORM_EMAIL": "Email",
+    "FORM_TLFMOVIL": "Teléfono móvil",
+    "FORM_PERSONAS": "Nº Personas",
+    "FORM_OBSERVACIONES": "Observaciones",
+    "FORM_BUTTON": "Enviar solicitud"
   },
   "ca": {
     "DATOS_MOVILES": "Utilitzar dades mòbils",
@@ -35,7 +47,19 @@
     "ADAPTADAS": "Adaptades",
     "TODAS" : "Totes",
     "INICIO": "Inici",
-    "TIEMPO": "Temps"
+    "TIEMPO": "Temps",
+    "TIT_MODAL_FECHA": "Data",
+    "TIT_MODAL_AVISO": "Avís Legal",
+    "FORM_NOMBRE": "Nom",
+    "FORM_APELLIDOS": "Cognoms",
+    "FORM_DNI": "DNI",
+    "FORM_DIRECCION": "Direcció",
+    "FORM_CODPOST": "Códi Postal",
+    "FORM_EMAIL": "Email",  
+    "FORM_TLFMOVIL": "Telèfon mòbil",
+    "FORM_PERSONAS": "Quantitat de persones",
+    "FORM_OBSERVACIONES": "Observacions",
+    "FORM_BUTTON": "Enviar petició"
   },
   "eu": {
     "DATOS_MOVILES": "Datu mugikorrak erabiliz",
@@ -54,7 +78,19 @@
     "ADAPTADAS": "Egokitu",
     "TODAS" : "Guztiak",
     "INICIO": "Hastapen",
-    "TIEMPO": "Eguraldia"
+    "TIEMPO": "Eguraldia",
+    "TIT_MODAL_FECHA": "Data",
+    "TIT_MODAL_AVISO": "Lege-oharra",
+    "FORM_NOMBRE": "Izen",
+    "FORM_APELLIDOS": "Abizenak",
+    "FORM_DNI": "DNI",
+    "FORM_DIRECCION": "Helbidea",
+    "FORM_CODPOST": "Posta kodea",
+    "FORM_EMAIL": "Email",  
+    "FORM_TLFMOVIL": "Mugikorra",
+    "FORM_PERSONAS": "Pertsona kopurua",
+    "FORM_OBSERVACIONES": "Nabarmentzea",
+    "FORM_BUTTON": "Bidali kontsulta"
   },
   "en": {
     "DATOS_MOVILES": "Use mobile data",
@@ -73,7 +109,19 @@
     "ADAPTADAS": "Adapted",
     "TODAS" : "All",
     "INICIO": "Home",
-    "TIEMPO": "Weather"
+    "TIEMPO": "Weather",
+    "TIT_MODAL_FECHA": "Date",
+    "TIT_MODAL_AVISO": "Legal warning",
+    "FORM_NOMBRE": "Name",
+    "FORM_APELLIDOS": "Surname",
+    "FORM_DNI": "DNI",
+    "FORM_DIRECCION": "Address",
+    "FORM_CODPOST": "Postal code",
+    "FORM_EMAIL": "Email",  
+    "FORM_TLFMOVIL": "Mobile phone",
+    "FORM_PERSONAS": "Number of people",
+    "FORM_OBSERVACIONES": "Observations",
+    "FORM_BUTTON": "Send request"
   },
   "de": {
     "DATOS_MOVILES": "Mit mobilen Daten",
@@ -92,7 +140,19 @@
     "ADAPTADAS": "Adaptiert",
     "TODAS" : "Alle",
     "INICIO": "Einleitung",
-    "TIEMPO": "Wetter"
+    "TIEMPO": "Wetter",
+    "TIT_MODAL_FECHA": "Datum",
+    "TIT_MODAL_AVISO": "Rechtlicher Hinweis",
+    "FORM_NOMBRE": "Name",
+    "FORM_APELLIDOS": "Nachnamen",
+    "FORM_DNI": "DNI",
+    "FORM_DIRECCION": "Adresse",
+    "FORM_CODPOST": "Postleitzahl",
+    "FORM_EMAIL": "E-Mail",  
+    "FORM_TLFMOVIL": "Telefon",
+    "FORM_PERSONAS": "Anzahl der Personen",
+    "FORM_OBSERVACIONES": "Beobachtungen",
+    "FORM_BUTTON": "Anfrage senden"
   },
   "fr": {
     "DATOS_MOVILES": "En utilisant des données mobiles",
@@ -111,6 +171,18 @@
     "ADAPTADAS": "Adapté",
     "TODAS" : "Tous",
     "INICIO": "Début",
-    "TIEMPO": "Météo"
+    "TIEMPO": "Météo",
+    "TIT_MODAL_FECHA": "Date",
+    "TIT_MODAL_AVISO": "Mentions légales",
+    "FORM_NOMBRE": "Prénom",
+    "FORM_APELLIDOS": "Nom",
+    "FORM_DNI": "DNI",
+    "FORM_DIRECCION": "Adresse",
+    "FORM_CODPOST": "Code postal",
+    "FORM_EMAIL": "E-Mail",  
+    "FORM_TLFMOVIL": "Mobile",
+    "FORM_PERSONAS": "Nombre de personnes",
+    "FORM_OBSERVACIONES": "Remarques",
+    "FORM_BUTTON": "Envoyer la demande"
   }
 }

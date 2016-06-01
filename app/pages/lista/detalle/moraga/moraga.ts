@@ -36,6 +36,7 @@ export class Moraga{
     "Playa": "",
     "AyuntamientoID": 39,
   };
+  aviso : boolean;
   constructor(private nav: NavController,
      private params : NavParams,
      private parser: Parser,
@@ -141,6 +142,10 @@ export class Moraga{
     this.nav.present(alert);
   }
   checkFields(){
+    if(!this.aviso){
+      this.showAlert("Atention", "Acepta el aviso legal", "OK");
+      return false;
+    }
     var ok = true;
     
     if (this.newMoraga.Nombre === ''){
@@ -180,17 +185,46 @@ export class Moraga{
     return ok;
   }
   
-  openModal() {
-    let modal = Modal.create(ModalsContentPage);
-   modal.onDismiss(data => {
-     this.newMoraga.Dia = moment(data.fecha).format('L');
-
-   });
-   this.nav.present(modal);
+  openModal(mod) {
+    if(mod === 'fecha'){
+      let modal = Modal.create(ModalsContentPage);
+      modal.onDismiss(data => {
+      this.newMoraga.Dia = moment(data.fecha).format('L');
+      });
+       this.nav.present(modal);
+    }else if(mod === 'aviso'){
+      
+    }
+    
+   
+  let modal = Modal.create(AvisoLegalPage);
+      
+       this.nav.present(modal);
 
 
   }
 }
+
+@Page({
+  templateUrl: './build/pages/lista/detalle/moraga/aviso-legal.html'
+})
+
+class AvisoLegalPage{
+  private viewContainer: ViewContainerRef;
+  private el: any;
+  constructor(viewContainer: ViewContainerRef,public platform: Platform,public nav: NavController,
+      public params: NavParams,
+      public viewCtrl: ViewController) {
+        this.viewContainer = viewContainer;
+    this.el = viewContainer.element.nativeElement;
+    
+      }
+  dismiss() {
+    
+    this.viewCtrl.dismiss();
+  }
+}
+
 @Page({
   templateUrl: './build/pages/lista/detalle/moraga/modal-content.html'
 })

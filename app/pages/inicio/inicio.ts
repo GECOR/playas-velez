@@ -17,7 +17,7 @@ import {Banderas} from '../../providers/banderas';
 
 export class Inicio {
 
-  pages: Array<{idx: number,title: string,section: string,importance: number,img: string, component: any}>
+  pages: Array<{idx: number,idTypeItem: number,title: string,section: string,importance: number,img: string, component: any}>
   data: any;
   translator_object : string;
   importancia1: any[];
@@ -78,7 +78,6 @@ export class Inicio {
 
     events.subscribe('lang:changed', (lang) => {
       this.ajustes = this.translator_object[lang[0]]['TIT_AJUSTES'];
-      this.tiempo =  this.translator_object[lang[0]]['TIEMPO'];
       console.log(this.ajustes);
       this.pages = new Array();
       this.importancia1 = new Array();
@@ -88,6 +87,7 @@ export class Inicio {
         var i = 0;
         typeItems.forEach(typeItem => {
           this.pages.push({ idx: i,
+                            idTypeItem: typeItem.idTypeItem,
                             title: typeItem[lang[0]] || typeItem.type,
                             section: typeItem.type,
                             importance: typeItem.importance,
@@ -117,6 +117,7 @@ export class Inicio {
     var i = 0;
     typeItems.forEach(typeItem => {
       this.pages.push({ idx: i,
+                        idTypeItem: typeItem.idTypeItem,
                         title: typeItem[localStorage.getItem('lang')] || typeItem.type,
                         section: typeItem.type,
                         importance: typeItem.importance,
@@ -161,7 +162,9 @@ export class Inicio {
         "tit":page.title,
         "section":page.section,
         "index":page.idx,
-        "estados": this.estados
+        "estados": this.estados,
+        "idTypeItem": page.idTypeItem
+        
 
       });
     }
