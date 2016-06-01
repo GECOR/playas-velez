@@ -1,64 +1,64 @@
 
 <ion-navbar *navbar hideBackButton class="show-navbar android-attr">
-  
   <ion-title>Vélez-Málaga</ion-title>
 </ion-navbar>
 
-
-  <ion-content>
-
-    <ion-list >
-
-    <ion-row >
-    <ion-col>
-      <ion-item   menuClose ion-item (click)="openPage('Tiempo')">
-        {{tiempo}}
-      </ion-item>
-    </ion-col>
-  </ion-row>
-      <ion-row *ngFor="let p of importancia1">
-      <ion-col>
-        <ion-item   menuClose ion-item (click)="openPage(p[0])">
-          {{p[0].title}}
-        </ion-item>
+<ion-content>
+  <ion-list >
+    <ion-row home>
+      <ion-col home>
+        <ion-card menuClose home class="advanced-background" (click)="openPage('Tiempo')">
+          <img src="img/el_tiempo.jpg"/>
+          <p home class="advanced-background-title">{{tiempo}}</p>
+        </ion-card>
       </ion-col>
     </ion-row>
-    <ion-row *ngFor="let p of importancia2">
-    <ion-col width-50>
-      <ion-item   menuClose ion-item (click)="openPage(p[0])">
-        {{p[0].title}}
-      </ion-item>
-    </ion-col>
-    <ion-col width-50>
-      <ion-item   menuClose ion-item (click)="openPage(p[1])">
-        {{p[1].title}}
-      </ion-item>
-    </ion-col>
-  </ion-row>
-  <ion-row *ngFor="let p of importancia3">
-  <ion-col width-33>
-    <ion-item   menuClose ion-item (click)="openPage(p[0])">
-      {{p[0].title}}
-    </ion-item>
-  </ion-col>
-  <ion-col width-33>
-    <ion-item   menuClose ion-item (click)="openPage(p[1])">
-      {{p[1].title}}
-    </ion-item>
-  </ion-col>
-  <ion-col width-33>
-    <ion-item   menuClose ion-item (click)="openPage(p[2])">
-      {{p[2].title}}
-    </ion-item>
-  </ion-col>
-</ion-row>
-
-    </ion-list>
-    <ion-list>
-      <button menuClose ion-item  (click)="openPage('Ajustes')">
-        {{ajustes}}
-      </button>
-    </ion-list>
-
-
-  </ion-content>
+    <ion-row home *ngFor="let p of importancia1">
+      <ion-col home>
+        <ion-card menuClose home class="advanced-background" (click)="openPage(p[0])">
+          <img home-imp1 src="{{p[0].img}}"/>
+          <p home class="advanced-background-title">{{p[0].title}}</p>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+    <ion-row home *ngFor="let p of importancia2">
+      <ion-col home width-50>
+        <ion-card menuClose home class="advanced-background" (click)="openPage(p[0])">
+          <img home src="{{p[0].img}}"/>
+          <p home class="advanced-background-title">{{p[0].title}}</p>
+        </ion-card>
+      </ion-col>
+      <ion-col home width-50>
+        <ion-card menuClose home class="advanced-background" (click)="openPage(p[1])">
+          <img home src="{{p[1].img}}"/>
+          <p home class="advanced-background-title">{{p[1].title}}</p>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+    <ion-row *ngFor="let p of importancia3">
+      <ion-col home width-33>
+        <ion-card menuClose home class="advanced-background" (click)="openPage(p[0])">
+          <img home src="{{p[0].img}}"/>
+          <p home class="advanced-background-title">{{p[1].title}}</p>
+        </ion-card>
+      </ion-col>
+      <ion-col home width-33>
+        <ion-card menuClose home class="advanced-background" (click)="openPage(p[1])">
+          <img home src="{{p[1].img}}"/>
+          <p home class="advanced-background-title">{{p[1].title}}</p>
+        </ion-card>
+      </ion-col>
+      <ion-col home width-33>
+        <ion-card menuClose home class="advanced-background" (click)="openPage(p[2])">
+          <img home src="{{p[2].img}}"/>
+          <p home class="advanced-background-title">{{p[2].title}}</p>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-list>
+  <ion-list>
+    <button menuClose ion-item  (click)="openPage('Ajustes')">
+      {{ajustes}}
+    </button>
+  </ion-list>
+</ion-content>

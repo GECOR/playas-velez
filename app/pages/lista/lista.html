@@ -24,7 +24,7 @@
   </div>
 
   <div id="switch" [ngSwitch]="tipo">
-    <ion-list *ngSwitchWhen="'Lista'">
+    <ion-list list *ngSwitchWhen="'Lista'">
       <ion-item *ngIf="section === 'Playas'">
 
         <ion-label>{{filtrar}}</ion-label>
@@ -43,12 +43,20 @@
       </ion-item>
     </div>
     <div *ngIf="section === 'Playas'">
-        <ion-item   *ngFor="let estado of estados"  (click)="itemTapped($event,estado)">
-          <ion-thumbnail item-left>
-            <img [src]="estado['bandera']">
-          </ion-thumbnail>
-          <h2>{{estado["nombre"]}}</h2>
-        </ion-item>
+      <ion-card *ngFor="let estado of estados" (click)="itemTapped($event,estado)">
+        <ion-card-content>
+          <ion-row>
+            <ion-col list width-25>
+              <ion-thumbnail item-left>
+                <img [src]="estado['bandera']" incident-img>
+              </ion-thumbnail>
+            </ion-col>
+            <ion-col list width-75>
+              <h2>{{estado["nombre"]}}</h2>
+            </ion-col>
+          </ion-row>
+        </ion-card-content>
+      </ion-card>
     </div>
     </ion-list>
 
