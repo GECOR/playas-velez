@@ -3,14 +3,16 @@
   <ion-title>Vélez-Málaga</ion-title>
 </ion-navbar>
 
-<ion-content>
-  <ion-list >
-    <ion-row home>
-      <ion-col home>
-        <ion-card menuClose home class="advanced-background" (click)="openPage('Tiempo')">
-          <img src="img/el_tiempo.jpg"/>
-          <p home class="advanced-background-title">{{tiempo}}</p>
-        </ion-card>
+
+
+  <ion-content>
+    <ion-list >
+    <ion-row *ngFor="let p of importancia1">
+      <ion-col>
+        <ion-item   menuClose ion-item (click)="openPage(p[0])">
+          {{p[0].title}}
+        </ion-item>
+
       </ion-col>
     </ion-row>
     <ion-row home *ngFor="let p of importancia1">
