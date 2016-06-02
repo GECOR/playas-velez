@@ -59,8 +59,11 @@
     </ion-row>
   </ion-list>
   <ion-list>
-    <button menuClose ion-item  (click)="openPage('Ajustes')">
-      {{ajustes}}
-    </button>
+    <ion-card menuClose home class="advanced-background" (click)="openPage('Ajustes')">
+      <ion-item>
+        <ion-icon name="settings" item-left></ion-icon>
+          {{ajustes}}
+      </ion-item>
+    </ion-card>
   </ion-list>
 </ion-content>

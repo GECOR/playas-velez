@@ -1,17 +1,22 @@
 
 <ion-navbar *navbar hideBackButton class="show-navbar android-attr">
-  <button menuToggle>
+  <!--<button menuToggle>
     <ion-icon name="menu"></ion-icon>
-  </button>
+  </button>-->
   <ion-title>{{tit}}</ion-title>
+  <ion-buttons end>
+    <button royal (click)="openHome()">
+      <ion-icon name="home"></ion-icon>
+    </button>
+  </ion-buttons>
 </ion-navbar>
 
 <ion-content class="has-header" >
   
     <div *ngIf="idTypeItem == 1010">
-      {{idTypeItem}}
+      <!--{{idTypeItem}}-->
       <iframe id="iframe_aemet_id29094" name="iframe_aemet_id29094" src="http://www.aemet.es/es/eltiempo/prediccion/municipios/mostrarwidget/velez-malaga-id29094?w=g4p01110111ovmffffffw353z475x3333cct6666ffr1s8n2"  style="width:100%;" height=475 frameborder="0" scrolling="yes"></iframe>
-      <a (click)="openMarket('https://play.google.com/store/apps/details?id=com.gecor.VelezMalaga')">Incidencias Vélez-Málaga</a>
+      <!--<a (click)="openMarket('https://play.google.com/store/apps/details?id=com.gecor.VelezMalaga')">Incidencias Vélez-Málaga</a>-->
     </div>
 
     <div padding *ngIf="idTypeItem != 1010">
@@ -29,7 +34,7 @@
     </div>
 
     <div id="switch" [ngSwitch]="tipo">
-      <ion-list list *ngSwitchWhen="'Lista'">
+      <ion-list *ngSwitchWhen="'Lista'">
         <ion-item *ngIf="idTypeItem == 1006">
           <ion-label>{{filtrar}}</ion-label>
           <ion-select [(ngModel)]="filter" (change)="filterList(filter)">
@@ -39,7 +44,7 @@
           </ion-select>
         </ion-item>
         <div *ngIf="idTypeItem != 1006">
-          <ion-item   *ngFor="let item of items"  (click)="itemTapped($event,item)">
+          <ion-item *ngFor="let item of items" (click)="itemTapped($event,item)">
             <ion-thumbnail item-left>
               <img [src]="item['images'][0].image">
             </ion-thumbnail>

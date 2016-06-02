@@ -3,6 +3,8 @@ import {NgZone} from '@angular/core';
 import {Parser} from '../../providers/parser';
 import {Translator} from '../../providers/translator';
 import {Events} from 'ionic-angular';
+import {Inicio} from './../inicio/inicio';
+
 @Page({
   templateUrl: 'build/pages/ajustes/ajustes.html',
   providers: [Parser,Translator]
@@ -82,6 +84,10 @@ export class Ajustes{
       }
     });
     this.events.publish('lang:changed', lang);
+  }
+  
+  openHome() {
+    this.nav.setRoot(Inicio,{});
   }
 
 }
