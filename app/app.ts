@@ -81,20 +81,24 @@ this.estados = JSON.parse(localStorage.getItem('banderas'));
                             img: typeItem.backgroundImage,
                             component: Lista });
           i++;
-        });
-        for (var _i = 0; _i < this.pages.length; _i++) {
-          if(this.pages[_i].importance === 1){
-            this.importancia1.push(new Array(this.pages[_i]));
+          if(i === typeItems.length){
+            for (var _i = 0; _i < this.pages.length; _i++) {
+              console.log(this.pages[_i]);
+              if(this.pages[_i].importance === 1){
+                this.importancia1.push(new Array(this.pages[_i]));
 
-          }else if(this.pages[_i].importance === 2){
-            this.importancia2.push([this.pages[_i],this.pages[_i+1]]);
-            _i = _i + 1;
-          }else{
-            this.importancia3.push([this.pages[_i],this.pages[_i+1],this.pages[_i+2]]);
-            _i = _i + 2;
+              }else if(this.pages[_i].importance === 2){
+                this.importancia2.push([this.pages[_i],this.pages[_i+1]]);
+                _i = _i + 1;
+              }else{
+                this.importancia3.push([this.pages[_i],this.pages[_i+1],this.pages[_i+2]]);
+                _i = _i + 2;
+              }
+
+            }
           }
-
-        }
+        });
+        
 
       });
     });
@@ -120,20 +124,23 @@ this.estados = JSON.parse(localStorage.getItem('banderas'));
                             component: Lista });
                             console.log(this.pages);
           i++;
-        });
-        for (var _i = 0; _i < this.pages.length; _i++) {
-          if(this.pages[_i].importance === 1){
-            this.importancia1.push(new Array(this.pages[_i]));
+          if(i === typeItems.length){
+            for (var _i = 0; _i < this.pages.length; _i++) {
+              if(this.pages[_i].importance === 1){
+                this.importancia1.push(new Array(this.pages[_i]));
 
-          }else if(this.pages[_i].importance === 2){
-            this.importancia2.push([this.pages[_i],this.pages[_i+1]]);
-            _i = _i + 1;
-          }else{
-            this.importancia3.push([this.pages[_i],this.pages[_i+1],this.pages[_i+2]]);
-            _i = _i + 2;
+              }else if(this.pages[_i].importance === 2){
+                this.importancia2.push([this.pages[_i],this.pages[_i+1]]);
+                _i = _i + 1;
+              }else{
+                this.importancia3.push([this.pages[_i],this.pages[_i+1],this.pages[_i+2]]);
+                _i = _i + 2;
+              }
+
+            }
           }
-
-        }
+        });
+    
       });
     });
 
