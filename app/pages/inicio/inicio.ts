@@ -158,7 +158,7 @@ export class Inicio {
 
 
     if(page === 'Ajustes'){
-      this.nav.setRoot(Ajustes,{
+      this.nav.push(Ajustes,{
         "tit":'Ajustes',
         "section":'Ajustes',
 
@@ -166,7 +166,7 @@ export class Inicio {
 
     }else {
 
-      this.nav.setRoot(page.component,{
+      this.nav.push(page.component,{
         "tit":page.title,
         "section":page.section,
         "index":page.idx,
