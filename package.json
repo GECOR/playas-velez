@@ -39,7 +39,8 @@
     "cordova-plugin-x-socialsharing",
     "cordova-plugin-whitelist",
     "cordova-plugin-geolocation",
-    "cordova-plugin-inappbrowser"
+    "cordova-plugin-inappbrowser",
+    "cordova-plugin-splashscreen"
   ],
   "cordovaPlatforms": [
     "cordova-ios@4.0.0",
