@@ -137,6 +137,9 @@ export class Inicio {
       }
 
     }
+    console.log("importancia1:",this.importancia1);
+    console.log("importancia2:",this.importancia2);
+    console.log("importancia3:",this.importancia3);
     this.nav && loading.dismiss();
   }
   openPage(page) {

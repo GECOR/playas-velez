@@ -7,14 +7,7 @@
 
   <ion-content>
     <ion-list >
-    <ion-row *ngFor="let p of importancia1">
-      <ion-col>
-        <ion-item    ion-item (click)="openPage(p[0])">
-          {{p[0].title}}
-        </ion-item>
 
-      </ion-col>
-    </ion-row>
     <ion-row home *ngFor="let p of importancia1">
       <ion-col home>
         <ion-card  home class="advanced-background" (click)="openPage(p[0])">
