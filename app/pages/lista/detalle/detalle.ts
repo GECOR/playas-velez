@@ -73,7 +73,6 @@ export class DetallePage {
 
     this.directionsService = new google.maps.DirectionsService();
 
-
     let mapOptions = {
         center:  new google.maps.LatLng(this.item.coordinates[0].latitude,this.item.coordinates[0].longitude),
         zoom: 13,
@@ -82,29 +81,30 @@ export class DetallePage {
     }
     this.map = new google.maps.Map(document.getElementById("mapDetail"), mapOptions);
 
-
-      this.item.coordinates.forEach(coordinate => {
-        let infoWindow = new google.maps.InfoWindow({
-          //content: `<h5>${markerData.name}</h5>`
-          content: `<ion-item>
-                      <ion-thumbnail>
-                        <img src="${this.item.images[0].image}">
-                      </ion-thumbnail>
-                      <h2>${this.item.title}</h2>
-                      <span>${this.item.dates[0] ? new Date(this.item.dates[0] && this.item.dates[0].startDate*1000).toLocaleString() : ""}</span><br>
-                      <span>${this.item.telefono ? this.item.telefono : ""}</span><br>
-                      <span>${this.item.email ? this.item.email : ""}</span><br>
-                    </ion-item>`
-        });
-        let marker = new google.maps.Marker({
-          position: new google.maps.LatLng(coordinate.latitude, coordinate.longitude),
-          map: this.map
-        });
-
-        marker.addListener('click', () => {
-          infoWindow.open(this.map, marker);
-        });
+    this.item.coordinates.forEach(coordinate => {
+      let infoWindow = new google.maps.InfoWindow({
+        //content: `<h5>${markerData.name}</h5>`
+        content: `<ion-item>
+                    <ion-thumbnail>
+                      <img src="${this.item.images[0].image}">
+                    </ion-thumbnail>
+                    <h2>${this.item.title}</h2>
+                    <span>${this.item.dates[0] ? new Date(this.item.dates[0] && this.item.dates[0].startDate*1000).toLocaleString() : ""}</span><br>
+                    <span>${this.item.telefono ? this.item.telefono : ""}</span><br>
+                    <span>${this.item.email ? this.item.email : ""}</span><br>
+                  </ion-item>`
       });
+      let marker = new google.maps.Marker({
+        position: new google.maps.LatLng(coordinate.latitude, coordinate.longitude),
+        map: this.map
+      });
+
+      marker.addListener('click', () => {
+        infoWindow.open(this.map, marker);
+      });
+    });
+    
+    this.calculateAndDisplayRoute();
 
   }
 
@@ -227,10 +227,7 @@ export class DetallePage {
   //END MAP
 
   share(message,subject,file,url){
-
-
     SocialSharing.share(message,subject,file,url);
-
   }
   
   

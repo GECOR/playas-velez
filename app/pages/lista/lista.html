@@ -19,7 +19,7 @@
       <!--<a (click)="openMarket('https://play.google.com/store/apps/details?id=com.gecor.VelezMalaga')">Incidencias Vélez-Málaga</a>-->
     </div>
 
-    <div padding *ngIf="idTypeItem != 1010">
+    <div padding *ngIf="idTypeItem != 1010  && idTypeItem != 1007">
       <ion-segment [(ngModel)]="tipo">
         <ion-segment-button value="Lista">
           {{lista}}

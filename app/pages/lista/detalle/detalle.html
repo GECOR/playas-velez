@@ -4,21 +4,16 @@
 </ion-navbar>
 <ion-content class="has-header">
 
-
-
   <ion-card>
-    <ion-item>
+    <ion-item class="top-bar-detail" [ngStyle]="{'background-color': item['rightBarColor']}">
       <h2>{{item.title}}</h2>
       <p>{{item.dates[0] && item.dates[0].startDate*1000 | date: 'dd-MM-yyyy'}}</p>
-
     </ion-item>
     <ion-slides pager>
-
-    <ion-slide style="background-color: green" *ngFor="let img of item.images">
-      <img src="{{img.image}}">
-    </ion-slide>
-
-  </ion-slides>
+      <ion-slide style="background-color: green" *ngFor="let img of item.images">
+        <img src="{{img.image}}">
+      </ion-slide>
+    </ion-slides>
     <ion-card-content>
     <p>{{item.description}}</p>
     </ion-card-content>
@@ -26,38 +21,26 @@
       <button primary clear item-right (click)="share(item.description,item.title,item.images[0].image,item.web)">
         <ion-icon name="share"></ion-icon>
         <div>{{compartir}}</div>
-
       </button>
       <button *ngIf="item.moraga" primary clear item-right (click)="openMoraga(item)">
-
         <div>{{moraga}}</div>
       </button>
-    </ion-item>
-
-    <ion-item>
-
     </ion-item>
   </ion-card>
 
   <ion-card class="ion-card-map">
     <div id="mapDetail" ></div>
-
-
     <ion-item>
-      <ion-icon name="alert" item-left large ></ion-icon>
+      <ion-icon name="map" item-left large ></ion-icon>
       <h2>{{item.title}}</h2>
       <p>{{endAddress}}</p>
     </ion-item>
-
     <ion-item>
-
-
-      <button primary clear item-right (click)="calculateAndDisplayRoute()">
+      <button primary clear item-right ><!--(click)="calculateAndDisplayRoute()"-->
         <ion-icon name="navigate"></ion-icon>
         {{comenzar}}
       </button>
     </ion-item>
-
-
   </ion-card>
+  
 </ion-content>
