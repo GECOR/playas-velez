@@ -55,3 +55,19 @@
     line-height: 1;
     display: inline-block;
   }
+  
+  .text-white {
+    color: white;
+  }
+  
+  .toolbar-title {
+    color: white !important;
+  }
+  
+  .toolbar-background{
+    background-color:rgba(55, 165, 54, .9) !important; // for bg color
+ }
+ 
+ .bar-button-default{
+   color: white !important;
+ }
