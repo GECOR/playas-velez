@@ -8,64 +8,64 @@
 
 <ion-content class="has-header" >
   
-   <div *ngIf="idTypeItem == 1010">
-     {{idTypeItem}}
-     <iframe id="iframe_aemet_id29094" name="iframe_aemet_id29094" src="http://www.aemet.es/es/eltiempo/prediccion/municipios/mostrarwidget/velez-malaga-id29094?w=g4p01110111ovmffffffw353z475x3333cct6666ffr1s8n2"  style="width:100%;" height=475 frameborder="0" scrolling="yes"></iframe>
-  <a (click)="openMarket('https://play.google.com/store/apps/details?id=com.gecor.VelezMalaga')">Incidencias Vélez-Málaga</a>
-     
-   </div>
-
-   <div padding *ngIf="idTypeItem != 1010">
-    <ion-segment [(ngModel)]="tipo">
-      <ion-segment-button value="Lista">
-        {{lista}}
-      </ion-segment-button>
-      <ion-segment-button  (click)="showMap()" value="Mapa">
-        {{mapa}}
-      </ion-segment-button>
-      <ion-segment-button value="Galeria">
-        {{galeria}}
-      </ion-segment-button>
-    </ion-segment>
-  </div>
-
-  <div id="switch" [ngSwitch]="tipo">
-    <ion-list list *ngSwitchWhen="'Lista'">
-      <ion-item *ngIf="section === 'Playas'">
-        <ion-label>{{filtrar}}</ion-label>
-        <ion-select [(ngModel)]="filter" (change)="filterList(filter)">
-          <ion-option value="Todas">{{todas}}</ion-option>
-          <ion-option value="Q">{{certificado_q}}</ion-option>
-          <ion-option value="adaptadas">{{adaptadass}}</ion-option>
-        </ion-select>
-      </ion-item>
-      <div *ngIf="section !== 'Playas'">
-      <ion-item   *ngFor="let item of items"  (click)="itemTapped($event,item)">
-        <ion-thumbnail item-left>
-          <img [src]="item['images'][0].image">
-        </ion-thumbnail>
-        <h2>{{item.title}}</h2>
-      </ion-item>
+    <div *ngIf="idTypeItem == 1010">
+      {{idTypeItem}}
+      <iframe id="iframe_aemet_id29094" name="iframe_aemet_id29094" src="http://www.aemet.es/es/eltiempo/prediccion/municipios/mostrarwidget/velez-malaga-id29094?w=g4p01110111ovmffffffw353z475x3333cct6666ffr1s8n2"  style="width:100%;" height=475 frameborder="0" scrolling="yes"></iframe>
+      <a (click)="openMarket('https://play.google.com/store/apps/details?id=com.gecor.VelezMalaga')">Incidencias Vélez-Málaga</a>
     </div>
-    <div *ngIf="section === 'Playas'">
-      <ion-card list *ngFor="let estado of estados" (click)="itemTapped($event,estado)">
-        <div class="right-bar" [ngStyle]="{'background-color': estado['rightBarColor']}"></div>
-        <ion-card-content>
-          <ion-row>
-            <ion-col list width-25>
-              <ion-thumbnail item-left>
-                <img [src]="estado['bandera']" incident-img>
-              </ion-thumbnail>
-            </ion-col>
-            <ion-col list width-75>
-              <h2>{{estado["nombre"]}}</h2>
-            </ion-col>
-          </ion-row>
-        </ion-card-content>
-      </ion-card>
+
+    <div padding *ngIf="idTypeItem != 1010">
+      <ion-segment [(ngModel)]="tipo">
+        <ion-segment-button value="Lista">
+          {{lista}}
+        </ion-segment-button>
+        <ion-segment-button  (click)="showMap()" value="Mapa">
+          {{mapa}}
+        </ion-segment-button>
+        <ion-segment-button value="Galeria">
+          {{galeria}}
+        </ion-segment-button>
+      </ion-segment>
     </div>
+
+    <div id="switch" [ngSwitch]="tipo">
+      <ion-list list *ngSwitchWhen="'Lista'">
+        <ion-item *ngIf="idTypeItem == 1006">
+          <ion-label>{{filtrar}}</ion-label>
+          <ion-select [(ngModel)]="filter" (change)="filterList(filter)">
+            <ion-option value="Todas">{{todas}}</ion-option>
+            <ion-option value="Q">{{certificado_q}}</ion-option>
+            <ion-option value="adaptadas">{{adaptadass}}</ion-option>
+          </ion-select>
+        </ion-item>
+        <div *ngIf="idTypeItem != 1006">
+          <ion-item   *ngFor="let item of items"  (click)="itemTapped($event,item)">
+            <ion-thumbnail item-left>
+              <img [src]="item['images'][0].image">
+            </ion-thumbnail>
+            <h2>{{item.title}}</h2>
+          </ion-item>
+        </div>
+        <div *ngIf="idTypeItem == 1006">
+          <ion-card list *ngFor="let estado of estados" (click)="itemTapped($event,estado)">
+            <img [src]="estado['backgroundImage']"><img>
+            <img [src]="estado['bandera']" bandera-img>
+            <!--<div class="right-bar" [ngStyle]="{'background-color': estado['rightBarColor']}"></div>-->
+            <!--<ion-card-content>
+              <ion-row>
+                <ion-col list width-25>
+                  <ion-thumbnail item-left>
+                    <img [src]="estado['bandera']" incident-img>
+                  </ion-thumbnail>
+                </ion-col>
+                <ion-col list width-75>
+                  <h2>{{estado["nombre"]}}</h2>
+                </ion-col>
+              </ion-row>
+            </ion-card-content>-->
+          </ion-card>
+        </div>
     </ion-list>
-
 
     <div id="container-map" *ngSwitchWhen="'Mapa'">
       <div id="map" ></div>
@@ -74,20 +74,14 @@
       {{ruta}}
       </button>
     </div>
-
+    
     <div id="gallery"  *ngSwitchWhen="'Galeria'" class="card-background-page">
-      <div *ngIf="section !== 'Playas'">
-      <ion-card *ngFor='let item of items' (click)="itemTapped($event,item)">
-        <img [src]="item.images[0].image" />
-        <div class="card-title">{{item.title}}</div>
-      </ion-card>
-    </div>
-    <div *ngIf="section === 'Playas'">
-      <ion-card *ngFor='let estado of estados' (click)="itemTapped($event,estado)">
-        <img [src]="estado['bandera']">
-        <div class="card-title">{{estado["nombre"]}}</div>
-      </ion-card>
-    </div>
+      <div *ngIf="idTypeItem != 1006">
+        <ion-card *ngFor='let item of items' (click)="itemTapped($event,item)">
+          <img [src]="item.images[0].image" />
+          <div class="card-title">{{item.title}}</div>
+        </ion-card>
+      </div>
     </div>
 
 
