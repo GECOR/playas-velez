@@ -39,7 +39,9 @@ export class Lista {
     adaptadass : string;
     section: string;
     estados =[];
-    idTypeItem : number;
+    idTypeItem: number;
+    loadedEstados: boolean = false;
+    
     constructor(private nav: NavController, private params : NavParams, private parser: Parser, private banderas : Banderas, private _ngZone: NgZone,private translator: Translator) {
       let loading = Loading.create({content:""});
       this.nav.present(loading);
@@ -66,7 +68,6 @@ export class Lista {
       console.log(Object.keys(this.estados[0]))
       this.all_estados = this.estados;
 
-
       this.parser.getItems(this.idx).then(lista =>{
         this.items = lista;
         if(this.section === 'Playas'){
@@ -78,9 +79,9 @@ export class Lista {
             }            
           })
         }
+        this.loadedEstados = true;
         loading.dismiss();
       });
-
 
       this.map = null;
       this.markerArray = [];
