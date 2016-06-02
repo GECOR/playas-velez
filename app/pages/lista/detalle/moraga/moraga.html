@@ -13,54 +13,53 @@
   <ion-list>
 
     <ion-item>
-
-
-
-      <ion-input type="text" value="" [(ngModel)]="newMoraga.Nombre" placeholder="Nombre"></ion-input>
+      <ion-input type="text" value="" [(ngModel)]="newMoraga.Nombre" placeholder="{{nombre}}"></ion-input>
     </ion-item>
 
     <ion-item>
-
-      <ion-input type="text" [(ngModel)]="newMoraga.Apellidos" placeholder="Apellidos"></ion-input>
-    </ion-item>
-    <ion-item>
-
-      <ion-input type="text" [(ngModel)]="newMoraga.DNI" placeholder="DNI"></ion-input>
-    </ion-item>
-    <ion-item>
-
-      <ion-input type="text" [(ngModel)]="newMoraga.Direccion" placeholder="Dirección"></ion-input>
-    </ion-item>
-    <ion-item>
-
-      <ion-input type="text" [(ngModel)]="newMoraga.CodPost" placeholder="Código postal"></ion-input>
-    </ion-item>
-    <ion-item>
-
-      <ion-input type="text" [(ngModel)]="newMoraga.Email" placeholder="Email"></ion-input>
-    </ion-item>
-    <ion-item>
-
-      <ion-input type="text" [(ngModel)]="newMoraga.TlfMovil" placeholder="Teléfono Móvil"></ion-input>
+      <ion-input type="text" [(ngModel)]="newMoraga.Apellidos" placeholder="{{apellidos}}"></ion-input>
     </ion-item>
     
     <ion-item>
-      <ion-input  type="text"  placeholder="Fecha" [(ngModel)]="newMoraga.Dia" (click)="openModal('fecha')"></ion-input>
+      <ion-input type="text" [(ngModel)]="newMoraga.DNI" placeholder="{{dni}}"></ion-input>
     </ion-item>
+    
     <ion-item>
-      <ion-input  type="text"  [(ngModel)]="newMoraga.NumAsistentes" placeholder="Nº Personas" ></ion-input>
+      <ion-input type="text" [(ngModel)]="newMoraga.Direccion" placeholder="{{direccion}}"></ion-input>
     </ion-item>
+    
     <ion-item>
-      <ion-textarea  type="text"  [(ngModel)]="newMoraga.Observaciones" placeholder="Observaciones: Sólo se aceptarán moragas y no pesca, acampadas u otro motivo" ></ion-textarea>
+      <ion-input type="text" [(ngModel)]="newMoraga.CodPost" placeholder="{{codpostal}}"></ion-input>
     </ion-item>
+    
     <ion-item>
-      
+      <ion-input type="text" [(ngModel)]="newMoraga.Email" placeholder="{{email}}"></ion-input>
+    </ion-item>
+    
+    <ion-item>
+      <ion-input type="text" [(ngModel)]="newMoraga.TlfMovil" placeholder="{{tlfmovil}}"></ion-input>
+    </ion-item>
+    
+    <ion-item>
+      <ion-input  type="text"  placeholder="{{fecha}}" [(ngModel)]="newMoraga.Dia" (click)="openModal('fecha')"></ion-input>
+    </ion-item>
+    
+    <ion-item>
+      <ion-input  type="text"  [(ngModel)]="newMoraga.NumAsistentes" placeholder="{{personas}}" ></ion-input>
+    </ion-item>
+    
+    <ion-item>
+      <ion-textarea  type="text"  [(ngModel)]="newMoraga.Observaciones" placeholder="{{observaciones}}" ></ion-textarea>
+    </ion-item>
+    
+    <ion-item>
       <ion-checkbox dark checked="false" [(ngModel)]="aviso" (click)="openModal('aviso')"></ion-checkbox>
-      <ion-label>Aviso Legal</ion-label>
+      <ion-label>{{avisolegal}}</ion-label>
     </ion-item>
-      <div padding>
-      <button type="submit"  class="button button-block button-positive">Enviar solicitud</button>
-      </div>
+    
+    <div padding>
+    <button type="submit"  class="button button-block button-positive">{{nombre}}</button>
+    </div>
 
   </ion-list>
 </form>

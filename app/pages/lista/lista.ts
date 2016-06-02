@@ -97,7 +97,7 @@ export class Lista {
   showMap() {
     setTimeout(()=>{
       this.loadMap()
-    },100)
+    },1000)
   }
 
 //MAP
