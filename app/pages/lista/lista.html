@@ -12,7 +12,7 @@
 </ion-navbar>
 
 <ion-content class="has-header" >
-  
+    
     <div *ngIf="idTypeItem == 1010">
       <!--{{idTypeItem}}-->
       <iframe id="iframe_aemet_id29094" name="iframe_aemet_id29094" src="http://www.aemet.es/es/eltiempo/prediccion/municipios/mostrarwidget/velez-malaga-id29094?w=g4p01110111ovmffffffw353z475x3333cct6666ffr1s8n2"  style="width:100%;" height=475 frameborder="0" scrolling="yes"></iframe>
@@ -31,7 +31,7 @@
       </ion-segment>
     </div>
 
-    <div *ngIf="loadedEstados" [ngSwitch]="tipo">
+    <div id="switch" *ngIf="loadedEstados" [ngSwitch]="tipo">
       <ion-list *ngSwitchWhen="'Lista'">
         <ion-item *ngIf="idTypeItem == 1006">
           <ion-label>{{filtrar}}</ion-label>
