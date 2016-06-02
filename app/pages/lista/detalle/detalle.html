@@ -15,7 +15,7 @@
     <ion-slides pager>
 
     <ion-slide style="background-color: green" *ngFor="let img of item.images">
-      <img src="{{img.image}}">
+      <img src="{{img && img.image}}">
     </ion-slide>
 
   </ion-slides>

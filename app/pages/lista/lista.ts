@@ -69,7 +69,7 @@ export class Lista {
 
       this.parser.getItems(this.idx).then(lista =>{
         this.items = lista;
-        if(this.section = 'Playas'){
+        if(this.section === 'Playas'){
           this.estados.forEach(estado =>{
             let item1= this.items.filter(this.childForItem(estado.idItem))[0];
             if (item1 != undefined){
