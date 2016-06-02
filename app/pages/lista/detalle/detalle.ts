@@ -50,7 +50,7 @@ export class DetallePage {
     this.markerArray = [];
 
     this.initGeolocation();
-    let latlng = new google.maps.LatLng(this.item.coordinates[0].latitude, this.item.coordinates[0].longitude);
+    let latlng = new google.maps.LatLng(this.item.coordinates[0] && this.item.coordinates[0].latitude, this.item.coordinates[0] && this.item.coordinates[0].longitude);
     this.geocoderService = new google.maps.Geocoder;
     this.geocoderService.geocode({'location': latlng}, (results, status) => {
       if (status === google.maps.GeocoderStatus.OK) {

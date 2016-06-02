@@ -27,9 +27,7 @@
         <ion-segment-button  (click)="showMap()" value="Mapa">
           {{mapa}}
         </ion-segment-button>
-        <ion-segment-button value="Galeria">
-          {{galeria}}
-        </ion-segment-button>
+        
       </ion-segment>
     </div>
 
@@ -80,14 +78,7 @@
       </button>
     </div>
     
-    <div id="gallery"  *ngSwitchWhen="'Galeria'" class="card-background-page">
-      <div *ngIf="idTypeItem != 1006">
-        <ion-card *ngFor='let item of items' (click)="itemTapped($event,item)">
-          <img [src]="item.images[0].image" />
-          <div class="card-title">{{item.title}}</div>
-        </ion-card>
-      </div>
-    </div>
+
 
 
   </div>

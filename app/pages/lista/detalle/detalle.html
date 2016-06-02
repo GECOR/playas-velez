@@ -10,10 +10,11 @@
       <p>{{item.dates[0] && item.dates[0].startDate*1000 | date: 'dd-MM-yyyy'}}</p>
     </ion-item>
     <ion-slides pager>
-      <ion-slide style="background-color: green" *ngFor="let img of item.images">
-        <img src="{{img.image}}">
-      </ion-slide>
-    </ion-slides>
+    <ion-slide style="background-color: green" *ngFor="let img of item.images">
+      <img src="{{img && img.image}}">
+    </ion-slide>
+
+  </ion-slides>
     <ion-card-content>
     <p>{{item.description}}</p>
     </ion-card-content>
