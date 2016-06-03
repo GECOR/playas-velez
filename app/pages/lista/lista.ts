@@ -45,17 +45,17 @@ export class Lista {
     constructor(private nav: NavController, private params : NavParams, private parser: Parser, private banderas : Banderas, private _ngZone: NgZone,private translator: Translator) {
       let loading = Loading.create({content:""});
       this.nav.present(loading);
-      translator.load().then(data =>{
-        this.translator_object = data;
-        this.lista = data[localStorage.getItem('lang')]['LISTA'];
-        this.mapa = data[localStorage.getItem('lang')]['MAPA'];
-        this.galeria = data[localStorage.getItem('lang')]['GALERIA'];
-        this.ruta = data[localStorage.getItem('lang')]['RUTA'];
-        this.filtrar = data[localStorage.getItem('lang')]['FILTRAR'];
-        this.todas = data[localStorage.getItem('lang')]['TODAS'];
-        this.certificado_q = data[localStorage.getItem('lang')]['CERTIFICADO_Q'];
-        this.adaptadass = data[localStorage.getItem('lang')]['ADAPTADAS'];
-      });
+      
+        this.translator_object = this.params.get('translator');
+        this.lista = this.translator_object[localStorage.getItem('lang')]['LISTA'];
+        this.mapa = this.translator_object[localStorage.getItem('lang')]['MAPA'];
+        this.galeria = this.translator_object[localStorage.getItem('lang')]['GALERIA'];
+        this.ruta = this.translator_object[localStorage.getItem('lang')]['RUTA'];
+        this.filtrar = this.translator_object[localStorage.getItem('lang')]['FILTRAR'];
+        this.todas = this.translator_object[localStorage.getItem('lang')]['TODAS'];
+        this.certificado_q = this.translator_object[localStorage.getItem('lang')]['CERTIFICADO_Q'];
+        this.adaptadass = this.translator_object[localStorage.getItem('lang')]['ADAPTADAS'];
+      
 
       this.params = params;
 
@@ -279,15 +279,16 @@ export class Lista {
       this.nav.push(DetallePage, {
       'item':item1,
       'tit': this.tit,
-      'playa': item
+      'playa': item,
+      'translator': this.translator_object
       });
     }else if(item.pdf){
       InAppBrowser.open(item.web,"_system",'location=yes');
     }else{
       this.nav.push(DetallePage, {
       'item':item,
-      'tit': this.tit
-
+      'tit': this.tit,
+      'translator': this.translator_object
       });
     }
 

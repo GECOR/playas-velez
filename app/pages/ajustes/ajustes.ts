@@ -43,11 +43,12 @@ export class Ajustes{
     this.params = params;
     this.tit = this.params.get('tit');
     this.onlineMode = localStorage.getItem('online');
-    translator.load().then(data =>{
-      this.translator_object = data;
-      this.datos_moviles = data[localStorage.getItem('lang')]['DATOS_MOVILES'];
-      this.idioma = data[localStorage.getItem('lang')]['SELECT_IDIOMA'];
-      this.tit = data[localStorage.getItem('lang')]['TIT_AJUSTES'];
+    
+      this.translator_object = this.params.get('translator');
+      console.log(this.translator_object);
+      this.datos_moviles = this.translator_object[localStorage.getItem('lang')]['DATOS_MOVILES'];
+      this.idioma = this.translator_object[localStorage.getItem('lang')]['SELECT_IDIOMA'];
+      this.tit = this.translator_object[localStorage.getItem('lang')]['TIT_AJUSTES'];
       var selectedLang = localStorage.getItem('lang');
       this.lang[selectedLang] = true;
       Object.keys(this.lang).forEach(l =>{
@@ -56,7 +57,7 @@ export class Ajustes{
         }
       });
 
-    });
+    
 
   }
 

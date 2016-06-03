@@ -18,7 +18,7 @@ export class Inicio {
 
   pages: Array<{idx: number,idTypeItem: number,title: string,section: string,importance: number,img: string, component: any}>
   data: any;
-  translator_object : string;
+  translator_object : any;
   importancia1: any[];
   importancia2: any[];
   importancia3: any[];
@@ -51,7 +51,7 @@ export class Inicio {
     this.estados = this.estados && this.estados.playas;
 
 
-    parser.load(); // Download JSON data
+   
     banderas.getEstados().then(estados =>{
       this.estados =estados;
     });
@@ -60,7 +60,7 @@ export class Inicio {
       this.tiempo = data[localStorage.getItem('lang')]['TIEMPO'];
       console.log(this.ajustes);
       this.translator_object = data;
-
+      console.log(this.translator_object);
       this.pages = new Array();
       this.importancia1 = new Array();
       this.importancia2 = new Array();
@@ -163,7 +163,7 @@ export class Inicio {
       this.nav.push(Ajustes,{
         "tit":'Ajustes',
         "section":'Ajustes',
-
+        "translator":this.translator_object
       });
 
     }else if(page.idTypeItem === 1011){
@@ -180,8 +180,8 @@ export class Inicio {
         "section":page.section,
         "index":page.idx,
         "estados": this.estados,
-        "idTypeItem": page.idTypeItem
-        
+        "idTypeItem": page.idTypeItem,
+        "translator":this.translator_object
 
       });
     }

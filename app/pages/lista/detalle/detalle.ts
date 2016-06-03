@@ -29,17 +29,19 @@ export class DetallePage {
   compartir: string;
   comenzar: string;
   moraga:string;
+  date : string
   constructor(private platform: Platform,private nav: NavController,private params: NavParams, private zone: NgZone,private translator: Translator){
     let loading = Loading.create({content:""});
     this.nav.present(loading);
-    translator.load().then(data =>{
+   
 
-      this.translator_object = data;
-      this.compartir = data[localStorage.getItem('lang')]["COMPARTIR"];
-      this.comenzar = data[localStorage.getItem('lang')]["COMENZAR"];
-      this.moraga = data[localStorage.getItem('lang')]["MORAGA"];
-    });
+      this.translator_object = this.params.get('translator');
+      this.compartir = this.translator_object[localStorage.getItem('lang')]["COMPARTIR"];
+      this.comenzar = this.translator_object[localStorage.getItem('lang')]["COMENZAR"];
+      this.moraga = this.translator_object[localStorage.getItem('lang')]["MORAGA"];
+    
     this.item = params.get('item');
+   
     console.log(this.item);
     this.tit = params.get('tit');
     console.log(params.get('playa'));
@@ -220,7 +222,8 @@ export class DetallePage {
   openMoraga(item){
     this.nav.push(Moraga, {
     'item':item,
-    'playa': this.params.get('playa')
+    'playa': this.params.get('playa'),
+    'translator': this.translator_object
     });
   }
 

@@ -59,22 +59,22 @@ export class Moraga{
                
        this.item = params.get('item');
        this.playa = params.get('playa');
-       translator.load().then(data =>{
-       this.tit = data[localStorage.getItem('lang')]['MORAGA'];         
-       this.nombre = data[localStorage.getItem('lang')]['FORM_NOMBRE'];
-       this.apellidos = data[localStorage.getItem('lang')]['FORM_APELLIDOS'];
-       this.dni = data[localStorage.getItem('lang')]['FORM_DNI'];
-       this.direccion = data[localStorage.getItem('lang')]['FORM_DIRECCION'];
-       this.codpostal = data[localStorage.getItem('lang')]['FORM_CODPOST'];
-       this.email = data[localStorage.getItem('lang')]['FORM_EMAIL'];
-       this.tlfmovil = data[localStorage.getItem('lang')]['FORM_TLFMOVIL'];
-       this.personas = data[localStorage.getItem('lang')]['FORM_PERSONAS'];
-       this.observaciones = data[localStorage.getItem('lang')]['FORM_OBSERVACIONES'];
-       this.button = data[localStorage.getItem('lang')]['FORM_BUTTON']; 
-       this.avisolegal = data[localStorage.getItem('lang')]['TIT_MODAL_AVISO']; 
-       this.fecha = data[localStorage.getItem('lang')]['TIT_MODAL_FECHA']; 
+       this.translator_object = params.get('translator')
+       this.tit = this.translator_object[localStorage.getItem('lang')]['MORAGA'];         
+       this.nombre = this.translator_object[localStorage.getItem('lang')]['FORM_NOMBRE'];
+       this.apellidos = this.translator_object[localStorage.getItem('lang')]['FORM_APELLIDOS'];
+       this.dni = this.translator_object[localStorage.getItem('lang')]['FORM_DNI'];
+       this.direccion = this.translator_object[localStorage.getItem('lang')]['FORM_DIRECCION'];
+       this.codpostal = this.translator_object[localStorage.getItem('lang')]['FORM_CODPOST'];
+       this.email = this.translator_object[localStorage.getItem('lang')]['FORM_EMAIL'];
+       this.tlfmovil = this.translator_object[localStorage.getItem('lang')]['FORM_TLFMOVIL'];
+       this.personas = this.translator_object[localStorage.getItem('lang')]['FORM_PERSONAS'];
+       this.observaciones = this.translator_object[localStorage.getItem('lang')]['FORM_OBSERVACIONES'];
+       this.button = this.translator_object[localStorage.getItem('lang')]['FORM_BUTTON']; 
+       this.avisolegal = this.translator_object[localStorage.getItem('lang')]['TIT_MODAL_AVISO']; 
+       this.fecha = this.translator_object[localStorage.getItem('lang')]['TIT_MODAL_FECHA']; 
          console.log(this.item.title);
-       });
+       
 
 
   }

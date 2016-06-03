@@ -44,105 +44,12 @@ class MyApp {
     private _ngZone: NgZone,
     public events: Events) {
 
-this.estados = JSON.parse(localStorage.getItem('banderas'));
-    this.estados = this.estados && this.estados.playas;
+
+   
 
     this.initializeApp();
 
-    if(!localStorage.getItem('lang')){
-      localStorage.setItem('lang','es');
-    }
-
-
-    parser.load().then(); // Download JSON data
-    banderas.getEstados().then(estados =>{
-      this.estados = estados;
-    });
-
-
-    translator.load().then(data =>{
-      this.ajustes = data[localStorage.getItem('lang')]['TIT_AJUSTES'];
-      this.inicio = data[localStorage.getItem('lang')]['INICIO'];
-      console.log(this.ajustes);
-      this.translator_object = data;
-
-      this.pages = new Array();
-      this.importancia1 = new Array();
-      this.importancia2 = new Array();
-      this.importancia3 = new Array();
-      this.parser.getTypeItems().then(typeItems => {
-        var i = 0;
-        typeItems.forEach(typeItem => {
-          this.pages.push({ idx: i,
-                            idTypeItem: typeItem.idTypeItem,
-                            title: typeItem[localStorage.getItem('lang')] || typeItem.type,
-                            section: typeItem.type,
-                            importance: typeItem.importance,
-                            img: typeItem.backgroundImage,
-                            component: Lista });
-          i++;
-          if(i === typeItems.length){
-            for (var _i = 0; _i < this.pages.length; _i++) {
-              console.log(this.pages[_i]);
-              if(this.pages[_i].importance === 1){
-                this.importancia1.push(new Array(this.pages[_i]));
-
-              }else if(this.pages[_i].importance === 2){
-                this.importancia2.push([this.pages[_i],this.pages[_i+1]]);
-                _i = _i + 1;
-              }else{
-                this.importancia3.push([this.pages[_i],this.pages[_i+1],this.pages[_i+2]]);
-                _i = _i + 2;
-              }
-
-            }
-          }
-        });
-        
-
-      });
-    });
-
-
-    events.subscribe('lang:changed', (lang) => {
-      this.ajustes = this.translator_object[lang[0]]['TIT_AJUSTES'];
-      this.inicio = this.translator_object[lang[0]]['INICIO'];
-      console.log(this.ajustes);
-      this.pages = new Array();
-      this.importancia1 = new Array();
-      this.importancia2 = new Array();
-      this.importancia3 = new Array();
-      this.parser.getTypeItems().then(typeItems => {
-        var i = 0;
-        typeItems.forEach(typeItem => {
-          this.pages.push({ idx: i,
-                            idTypeItem: typeItem.idTypeItem,
-                            title: typeItem[lang[0]] || typeItem.type,
-                            section: typeItem.type,
-                            importance: typeItem.importance,
-                            img: typeItem.backgroundImage,
-                            component: Lista });
-                            console.log(this.pages);
-          i++;
-          if(i === typeItems.length){
-            for (var _i = 0; _i < this.pages.length; _i++) {
-              if(this.pages[_i].importance === 1){
-                this.importancia1.push(new Array(this.pages[_i]));
-
-              }else if(this.pages[_i].importance === 2){
-                this.importancia2.push([this.pages[_i],this.pages[_i+1]]);
-                _i = _i + 1;
-              }else{
-                this.importancia3.push([this.pages[_i],this.pages[_i+1],this.pages[_i+2]]);
-                _i = _i + 2;
-              }
-
-            }
-          }
-        });
-    
-      });
-    });
+  
 
   }
 
@@ -173,7 +80,7 @@ this.estados = JSON.parse(localStorage.getItem('banderas'));
     //var nav = this.app.getComponent('nav');
 
 
-    console.log(this.nav);
+    /*console.log(this.nav);
     if(page === 'Ajustes'){
       this.nav.setRoot(Ajustes,{
         "tit":'Ajustes',
@@ -193,6 +100,6 @@ this.estados = JSON.parse(localStorage.getItem('banderas'));
         "idTypeItem": page.idTypeItem
       });
     }
-
+    */
   }
 }
