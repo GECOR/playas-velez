@@ -17,7 +17,7 @@ export class Banderas {
         }else{
 
 
-          this.http.get('http://192.168.1.125/ApiVelez/api/Data/estados',null).subscribe(res => {
+          this.http.get('http://gecorsystem.com/ApiVelez/api/Data/estados',null).subscribe(res => {
 
             this.data = this.processResponse(res.json());
             console.log(this.data);

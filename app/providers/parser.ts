@@ -17,7 +17,7 @@ export class Parser {
         }else{
 
 
-          this.http.get('http://192.168.1.125/ApiVelez/api/Data/').subscribe(res => {
+          this.http.get('http://gecorsystem.com/ApiVelez/api/Data/').subscribe(res => {
 
             this.data = this.processData(res.json());
             console.log("typeitems",this.data);
