@@ -90,7 +90,7 @@ export class Lista {
       this.distanceTravel = '0 km';
       this.directionsService = new google.maps.DirectionsService;
       this.directionsDisplay = new google.maps.DirectionsRenderer;
-      this.initGeolocation();
+      //this.initGeolocation();
 
   }
 
