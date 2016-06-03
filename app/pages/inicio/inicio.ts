@@ -7,6 +7,7 @@ import {Translator} from '../../providers/translator';
 import {NgZone, Component,ViewChild} from '@angular/core';
 import {Events} from 'ionic-angular';
 import {Banderas} from '../../providers/banderas';
+import {InAppBrowser} from 'ionic-native';
 @Page({
   templateUrl: 'build/pages/inicio/inicio.html',
   providers: [Parser,Translator,Banderas]
@@ -26,6 +27,7 @@ export class Inicio {
   inicio: string;
   tiempo : string;
   estados: any;
+  
   constructor(private app: IonicApp,
     private platform: Platform,
     private http: Http,
@@ -164,7 +166,14 @@ export class Inicio {
 
       });
 
-    }else {
+    }else if(page.idTypeItem === 1011){
+     if(this.platform.is('ios')){
+        InAppBrowser.open('https://itunes.apple.com/in/app/incidencias-velez-malaga/id990970923?mt=8','_system','location=yes'); 
+     }else if(this.platform.is('android')){
+        InAppBrowser.open('https://play.google.com/store/apps/details?id=com.gecor.VelezMalaga','_system','location=yes'); 
+     }
+      
+    }else{
 
       this.nav.push(page.component,{
         "tit":page.title,
