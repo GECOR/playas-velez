@@ -7,7 +7,7 @@ import {Translator} from './providers/translator';
 import {ViewChild, NgZone, Component} from '@angular/core';
 import {Events} from 'ionic-angular';
 import {Inicio} from './pages/inicio/inicio';
-import {CalendarPage} from './pages/calendar/calendar';
+import {Splashscreen} from 'ionic-native';
 import {Banderas} from './providers/banderas';
 
 @App({
@@ -55,7 +55,9 @@ class MyApp {
 
   initializeApp() {
     this.platform.ready().then(() => {
-
+    setTimeout(function() {
+    Splashscreen.hide();
+        }, 100);
       // The platform is now ready. Note: if this callback fails to fire, follow
       // the Troubleshooting guide for a number of possible solutions:
       //

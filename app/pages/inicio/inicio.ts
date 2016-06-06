@@ -43,7 +43,7 @@ export class Inicio {
       this.nav && this.nav.present(loading);
 
     if(!localStorage.getItem('lang')){
-      localStorage.setItem('lang',navigator.language);
+      localStorage.setItem('lang','es');
     }
 
     this.estados = JSON.parse(localStorage.getItem('banderas'));
