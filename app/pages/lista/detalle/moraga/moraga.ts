@@ -88,7 +88,7 @@ export class Moraga{
       let body = JSON.stringify(this.newMoraga);
       let headers = new Headers({ 'Content-Type': 'application/json' });
       let options = new RequestOptions({ headers: headers });
-      this.http.post('http://192.168.1.125/ApiVelez/api/Moraga/',body,options).subscribe(res =>{
+      this.http.post('http://gecorsystem.com/ApiVelez/api/Moraga/',body,options).subscribe(res =>{
     })
     }
     
@@ -165,45 +165,63 @@ export class Moraga{
     });
     this.nav.present(alert);
   }
+  
+
+   
+    
   checkFields(){
+    let atencion = this.translator_object[localStorage.getItem('lang')]['ATENCION']; 
     if(!this.aviso){
-      this.showAlert("Atention", "Acepta el aviso legal", "OK");
+      this.showAlert(atencion, this.translator_object[localStorage.getItem('lang')]['VALIDATE_AVISO'] , "OK");
       return false;
     }
     var ok = true;
     
     if (this.newMoraga.Nombre === ''){
       ok = false;
-      this.showAlert("Atention", "Please write a name", "OK");
+      this.showAlert(atencion, this.translator_object[localStorage.getItem('lang')]['VALIDATE_NOMBRE'], "OK");
       return ok;
     }
     if (this.newMoraga.Apellidos === ''){
       ok = false;
-      this.showAlert("Atention", "Please write a surname", "OK");
+      this.showAlert(atencion, this.translator_object[localStorage.getItem('lang')]['VALIDATE_APELLIDOS'], "OK");
       return ok;
     }
     if (this.newMoraga.DNI === '' || !this.checkDNI(this.newMoraga.DNI)){
       ok = false;
-      this.showAlert("Atention", "Please Insert a correct DNI", "OK");
+      this.showAlert(atencion, this.translator_object[localStorage.getItem('lang')]['VALIDATE_DNI'], "OK");
       return ok;
     }
     if (this.newMoraga.CodPost === '' || !this.checkCodPost(this.newMoraga.CodPost)){
       ok = false;
-      this.showAlert("Atention", "Please insert a correct Codigo postal", "OK");
+      this.showAlert(atencion, this.translator_object[localStorage.getItem('lang')]['VALIDATE_CODPOST'], "OK");
       return ok;
     }
     if (this.newMoraga.Email === '' || !this.checkEmail(this.newMoraga.Email)){
       ok = false;
-      this.showAlert("Atention", "Please insert a correct Email", "OK");
+      this.showAlert(atencion, this.translator_object[localStorage.getItem('lang')]['VALIDATE_EMAIL'], "OK");
       return ok;
     }
     if (this.newMoraga.TlfMovil === '' || !this.checkTlfMovil(this.newMoraga.TlfMovil)){
       ok = false;
-      this.showAlert("Atention", "Please insert a correct Teléfono móvil\n Ej:(+34654363636)", "OK");
+      this.showAlert(atencion, this.translator_object[localStorage.getItem('lang')]['VALIDATE_TELEFONO'], "OK");
       return ok;
     }
-
-    
+    if (this.newMoraga.Direccion === '' ){
+      ok = false;
+      this.showAlert(atencion, this.translator_object[localStorage.getItem('lang')]['VALIDATE_DIRECCION'], "OK");
+      return ok;
+    }
+    if (this.newMoraga.NumAsistentes === '' ){
+      ok = false;
+      this.showAlert(atencion, this.translator_object[localStorage.getItem('lang')]['VALIDATE_NUM_ASIST'], "OK");
+      return ok;
+    } 
+    if (this.fecha === '' ){
+      ok = false;
+      this.showAlert(atencion, this.translator_object[localStorage.getItem('lang')]['VALIDATE_DIA'], "OK");
+      return ok;
+    } 
    
     
     return ok;
@@ -211,19 +229,24 @@ export class Moraga{
   
   openModal(mod) {
     if(mod === 'fecha'){
-      let modal = Modal.create(ModalsContentPage);
+      let modal = Modal.create(ModalsContentPage,{
+        "translator": this.translator_object[localStorage.getItem('lang')]
+      });
       modal.onDismiss(data => {
       this.newMoraga.Dia = moment(data.fecha).format('L');
       });
-       this.nav.present(modal);
+       this.nav.present(modal,{
+         
+       });
     }else if(mod === 'aviso'){
+      let modal = Modal.create(AvisoLegalPage);
       
+       this.nav.present(modal);
+
     }
     
    
-  let modal = Modal.create(AvisoLegalPage);
-      
-       this.nav.present(modal);
+ 
 
 
   }
@@ -381,7 +404,7 @@ class ModalsContentPage {
     if(moment(date).startOf('day').diff(moment().startOf('day'),'days') <= 5){
       let alert = Alert.create({
         title: 'Error',
-        message: "La fecha debe ser posterior a 5 días desde hoy",
+        message: this.params.get('translator')['VALIDATE_FECHA'],
         buttons: [
           {
             text: 'Ok',
@@ -479,7 +502,7 @@ class ModalsContentPage {
               year: date.year(),
               isCurrentMonth: date.month() === month.month(),
               isToday: date.isSame(new Date(), "day"),
-              selected: selectedDate.day == date.date() && selectedDate.month == date.month() && selectedDate.year == date.year() ? true : false,
+              selected: selectedDate.day == date.day() && selectedDate.month == date.month() && selectedDate.year == date.year() ? true : false,
               date: date
           });
           date = date.clone();
@@ -576,6 +599,7 @@ class ModalsContentPage {
   }
 
   dismiss(selectedDate) {
+    console.log(selectedDate);
     let data = { 'fecha': selectedDate};
     this.viewCtrl.dismiss(data);
   }

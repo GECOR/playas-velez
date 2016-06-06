@@ -43,8 +43,8 @@ export class Lista {
     loadedEstados: boolean = false;
     
     constructor(private nav: NavController, private params : NavParams, private parser: Parser, private banderas : Banderas, private _ngZone: NgZone,private translator: Translator) {
-      let loading = Loading.create({content:""});
-      this.nav.present(loading);
+      let loading = this.params.get('loading');
+      
       
         this.translator_object = this.params.get('translator');
         this.lista = this.translator_object[localStorage.getItem('lang')]['LISTA'];
@@ -160,6 +160,7 @@ export class Lista {
         this.geocoderService.geocode({'location': this.latLng}, (results, status) => {
           if (status === google.maps.GeocoderStatus.OK) {
             if (results[0]) {
+              
               this.startAddress = results[0].formatted_address;
               this.loadMap();
             } else {
@@ -172,20 +173,7 @@ export class Lista {
       },
       (error) => {
       
-        let alert = Alert.create({
-        title: error.code.toString(),
-        subTitle: error.message,
-        buttons: [
-          {
-            text: this.translator_object[localStorage.getItem('lang')]['REINTENTAR'],
-            role: 'reload',
-            handler: () => {
-              this.loadMap();
-            }
-          }
-          ]
-        });
-        this.nav.present(alert);
+       
       }, options);
   }
 

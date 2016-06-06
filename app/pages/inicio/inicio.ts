@@ -1,4 +1,4 @@
-import {Page, IonicApp, Platform,NavController,Loading} from 'ionic-angular';
+import {Page, IonicApp, Platform,NavController,Loading,Alert} from 'ionic-angular';
 import {Http} from '@angular/http';
 import {Lista} from '../lista/lista';
 import {Parser} from '../../providers/parser';
@@ -38,13 +38,12 @@ export class Inicio {
     public events: Events,
     private nav: NavController) {
 
-
-
+      
       let loading = Loading.create({content:""});
       this.nav && this.nav.present(loading);
 
     if(!localStorage.getItem('lang')){
-      localStorage.setItem('lang','es');
+      localStorage.setItem('lang',navigator.language);
     }
 
     this.estados = JSON.parse(localStorage.getItem('banderas'));
@@ -174,15 +173,16 @@ export class Inicio {
      }
       
     }else{
-
+      let loading = Loading.create({content:""});
+      this.nav.present(loading);
       this.nav.push(page.component,{
         "tit":page.title,
         "section":page.section,
         "index":page.idx,
         "estados": this.estados,
         "idTypeItem": page.idTypeItem,
-        "translator":this.translator_object
-
+        "translator":this.translator_object,
+        "loading": loading
       });
     }
 

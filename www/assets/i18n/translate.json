@@ -28,7 +28,19 @@
     "FORM_TLFMOVIL": "Teléfono móvil",
     "FORM_PERSONAS": "Nº Personas",
     "FORM_OBSERVACIONES": "Observaciones",
-    "FORM_BUTTON": "Enviar solicitud"
+    "FORM_BUTTON": "Enviar solicitud",
+    "VALIDATE_NOMBRE": "Por favor, escriba su nombre",
+    "VALIDATE_APELLIDOS": "Por favor, escriba sus apellidos",
+    "VALIDATE_DNI": "El DNI no es correcto",
+    "VALIDATE_EMAIL": "El email no es correcto",
+    "VALIDATE_DIRECCION": "Por favor, escriba su dirección",
+    "VALIDATE_CODPOST": "El código postal no es correcto",
+    "VALIDATE_TELEFONO": "El número de teléfono no es correcto \n Ej:(+34654363636)",
+    "VALIDATE_FECHA": "Por favor, escriba la fecha de moraga",
+    "VALIDATE_DIA": "La fecha debe ser posterior a cinco días",
+    "VALIDATE_NUM_ASIST": "Por favor, escriba el número de asistentes",
+    "VALIDATE_AVISO": "Por favor, acepta el aviso legal",
+    "ATENCION": "Atención"
   },
   "ca": {
     "DATOS_MOVILES": "Utilitzar dades mòbils",
@@ -59,7 +71,19 @@
     "FORM_TLFMOVIL": "Telèfon mòbil",
     "FORM_PERSONAS": "Quantitat de persones",
     "FORM_OBSERVACIONES": "Observacions",
-    "FORM_BUTTON": "Enviar petició"
+    "FORM_BUTTON": "Enviar petició",
+    "VALIDATE_NOMBRE": "Si us plau, escrigui el seu nom",
+    "VALIDATE_APELLIDOS": "Si us plau , escriviu seus cognoms",
+    "VALIDATE_DNI": "El DNI no és correctes",
+    "VALIDATE_EMAIL": "L'email no és correcte",
+    "VALIDATE_DIRECCION": "Si us plau, escriviu la vostra adreça",
+    "VALIDATE_CODPOST": "El codi postal no és correcte",
+    "VALIDATE_TELEFONO": "El número de telèfon no és correcte \n Ej:(+34654363636)",
+    "VALIDATE_FECHA": "Si us plau , escriviu la data de moraga",
+    "VALIDATE_DIA": "La data ha de ser posterior a cinc dies",
+    "VALIDATE_NUM_ASIST": "Si us plau , escriviu el nombre d'assistents",
+    "VALIDATE_AVISO": "Si us plau , accepta l'avís legal",
+    "ATENCION": "Atenció"
   },
   "eu": {
     "DATOS_MOVILES": "Datu mugikorrak erabiliz",
@@ -90,7 +114,19 @@
     "FORM_TLFMOVIL": "Mugikorra",
     "FORM_PERSONAS": "Pertsona kopurua",
     "FORM_OBSERVACIONES": "Nabarmentzea",
-    "FORM_BUTTON": "Bidali kontsulta"
+    "FORM_BUTTON": "Bidali kontsulta",
+    "VALIDATE_NOMBRE": "Mesedez, idatzi zure izena",
+    "VALIDATE_APELLIDOS": "Mesedez, idatzi zure abizenak",
+    "VALIDATE_DNI": "DNI ez da zuzena",
+    "VALIDATE_EMAIL": "Elektronikoa ez da zuzena",
+    "VALIDATE_DIRECCION": "Mesedez, idatzi zure helbide",
+    "VALIDATE_CODPOST": "Postal kodea ez da zuzena",
+    "VALIDATE_TELEFONO": "Telefono zenbakia ez da zuzena \n Ej:(+34654363636)",
+      "VALIDATE_FECHA": "Mesedez, idatzi Moraga -data",
+    "VALIDATE_DIA": "Baino bost egun ondoren gertatu behar",
+      "VALIDATE_NUM_ASIST": "Mesedez sartu bertaratuen kopurua",
+    "VALIDATE_AVISO": "Mesedez, onartu ezespena",
+    "ATENCION": "Arreta"
   },
   "en": {
     "DATOS_MOVILES": "Use mobile data",
@@ -121,7 +157,19 @@
     "FORM_TLFMOVIL": "Mobile phone",
     "FORM_PERSONAS": "Number of people",
     "FORM_OBSERVACIONES": "Observations",
-    "FORM_BUTTON": "Send request"
+    "FORM_BUTTON": "Send request",
+    "VALIDATE_NOMBRE": "Please write your name",
+    "VALIDATE_APELLIDOS": "Please write your surname",
+    "VALIDATE_DNI": "DNI is not correct",
+    "VALIDATE_EMAIL": "Email is not correct",
+    "VALIDATE_DIRECCION": "Please write your address",
+    "VALIDATE_CODPOST": "Postal code is not correct",
+    "VALIDATE_TELEFONO": "Phone number is incorrect \n Ej:(+34654363636)",
+    "VALIDATE_FECHA": "Please write the date",
+    "VALIDATE_DIA": "The date must occur after five days",
+    "VALIDATE_NUM_ASIST": "Please enter the number of attendees",
+    "VALIDATE_AVISO": "Please accept the disclaimer",
+    "ATENCION": "Attention"
   },
   "de": {
     "DATOS_MOVILES": "Mit mobilen Daten",
@@ -152,7 +200,19 @@
     "FORM_TLFMOVIL": "Telefon",
     "FORM_PERSONAS": "Anzahl der Personen",
     "FORM_OBSERVACIONES": "Beobachtungen",
-    "FORM_BUTTON": "Anfrage senden"
+    "FORM_BUTTON": "Anfrage senden",
+    "VALIDATE_NOMBRE": "Bitte schreiben Sie Ihren Namen",
+    "VALIDATE_APELLIDOS": "Bitte geben Sie Ihren Nachnamen",
+    "VALIDATE_DNI": "Die DNI ist nicht korrekt",
+    "VALIDATE_EMAIL": "Die E-Mail ist nicht korrekt",
+    "VALIDATE_DIRECCION": "Schreiben Sie bitte Ihre Adresse",
+    "VALIDATE_CODPOST": "Die Postleitzahl ist nicht korrekt",
+    "VALIDATE_TELEFONO": "Die Telefonnummer ist falsch \n Ej:(+34654363636)",
+    "VALIDATE_FECHA": "Bitte schreiben Sie das Datum",
+    "VALIDATE_DIA": "Das Datum muss nach fünf Tagen auftreten",
+    "VALIDATE_NUM_ASIST": "Bitte geben Sie die Anzahl der Teilnehmer",
+    "VALIDATE_AVISO": "Bitte akzeptieren Sie die Nutzungsbedingungen",
+    "ATENCION": "Aufmerksamkeit"
   },
   "fr": {
     "DATOS_MOVILES": "En utilisant des données mobiles",
@@ -183,6 +243,18 @@
     "FORM_TLFMOVIL": "Mobile",
     "FORM_PERSONAS": "Nombre de personnes",
     "FORM_OBSERVACIONES": "Remarques",
-    "FORM_BUTTON": "Envoyer la demande"
+    "FORM_BUTTON": "Envoyer la demande",
+    "VALIDATE_NOMBRE": "S'il vous plaît écrivez votre nom",
+    "VALIDATE_APELLIDOS": "S'il vous plaît écrire votre nom de famille",
+    "VALIDATE_DNI": "Le DNI est incorrect",
+    "VALIDATE_EMAIL": "Le courrier électronique est incorrecte",
+      "VALIDATE_DIRECCION": "S'il vous plaît écrivez votre adresse",
+    "VALIDATE_CODPOST": "Le code postal est incorrect",
+    "VALIDATE_TELEFONO": "Le numéro de téléphone est incorrect \n Ej:(+34654363636)",
+    "VALIDATE_FECHA": "S'il vous plaît écrire la date",
+    "VALIDATE_DIA": "La date doit se produire après cinq jours",
+    "VALIDATE_NUM_ASIST": "S'il vous plaît entrer le numéro d'assistants",
+    "VALIDATE_AVISO": "S'il vous plaît accepter l'avertissement",
+    "ATENCION": "Attention"
   }
 }

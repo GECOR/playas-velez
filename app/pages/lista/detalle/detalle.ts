@@ -51,7 +51,9 @@ export class DetallePage {
     this.map = null;
     this.markerArray = [];
 
-    this.initGeolocation();
+   
+        this.initGeolocation();
+      
     let latlng = new google.maps.LatLng(this.item.coordinates[0] && this.item.coordinates[0].latitude, this.item.coordinates[0] && this.item.coordinates[0].longitude);
     this.geocoderService = new google.maps.Geocoder;
     this.geocoderService.geocode({'location': latlng}, (results, status) => {
@@ -106,7 +108,9 @@ export class DetallePage {
       });
     });
     
-    this.calculateAndDisplayRoute();
+    
+        
+      
 
   }
 
@@ -129,6 +133,7 @@ export class DetallePage {
             if (results[0]) {
               this.startAddress = results[0].formatted_address;
               this.loadMap();
+              this.calculateAndDisplayRoute();
             } else {
               window.alert('No results found');
             }
@@ -138,20 +143,7 @@ export class DetallePage {
         });
       },
       (error) => {
-        let alert = Alert.create({
-        title: error.code.toString(),
-        subTitle: error.message,
-        buttons: [
-          {
-            text: 'Retry',
-            role: 'reload',
-            handler: () => {
-              this.loadMap();
-            }
-          }
-          ]
-        });
-        this.nav.present(alert);
+        this.loadMap();
       }, options);
   }
 
