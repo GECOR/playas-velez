@@ -66,7 +66,9 @@ export class DetallePage {
       } else {
         window.alert('Geocoder failed due to: ' + status);
       }
-      loading.dismiss();
+      setTimeout(() => {
+        loading.dismiss();
+      }, 500);
     });
 
 
@@ -84,7 +86,7 @@ export class DetallePage {
         disableDefaultUI: true
     }
     this.map = new google.maps.Map(document.getElementById("mapDetail"), mapOptions);
-
+    if(this.item.coordinates)
     this.item.coordinates.forEach(coordinate => {
       let infoWindow = new google.maps.InfoWindow({
         //content: `<h5>${markerData.name}</h5>`

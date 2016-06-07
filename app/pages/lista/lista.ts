@@ -80,7 +80,9 @@ export class Lista {
           })
         }
         this.loadedEstados = true;
+        setTimeout(() => {
         loading.dismiss();
+      }, 500);
       });
 
       this.map = null;

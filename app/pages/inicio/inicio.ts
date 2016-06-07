@@ -7,7 +7,7 @@ import {Translator} from '../../providers/translator';
 import {NgZone, Component,ViewChild} from '@angular/core';
 import {Events} from 'ionic-angular';
 import {Banderas} from '../../providers/banderas';
-import {InAppBrowser} from 'ionic-native';
+import {InAppBrowser,Network,Connection} from 'ionic-native';
 @Page({
   templateUrl: 'build/pages/inicio/inicio.html',
   providers: [Parser,Translator,Banderas]
@@ -39,41 +39,34 @@ export class Inicio {
     private nav: NavController) {
 
       
-      let loading = Loading.create({content:""});
-      this.nav && this.nav.present(loading);
+    let loading = Loading.create({
+    content: 'Please wait...'
+  });
 
+  this.nav.present(loading);
+
+ 
     if(!localStorage.getItem('lang')){
       localStorage.setItem('lang','es');
     }
 
-    this.estados = JSON.parse(localStorage.getItem('banderas'));
-    this.estados = this.estados && this.estados.playas;
 
-
-   
-    banderas.getEstados().then(estados =>{
-      this.estados =estados;
-    });
-    translator.load().then(data =>{
-      this.ajustes = data[localStorage.getItem('lang')]['TIT_AJUSTES'];
-      this.tiempo = data[localStorage.getItem('lang')]['TIEMPO'];
-      console.log(this.ajustes);
-      this.translator_object = data;
-      console.log(this.translator_object);
-      this.pages = new Array();
-      this.importancia1 = new Array();
-      this.importancia2 = new Array();
-      this.importancia3 = new Array();
-
-      this.parser.getTypeItems().then(typeItems => {
-        
-        this.insertTypeItems(typeItems,loading);
-
-      }).catch(err =>{
-          this.insertTypeItems(localStorage.getItem('data'),loading);
-      });
-
-    });
+    if(Network.connection != Connection.NONE){
+      
+      this.downloadData();  
+          setTimeout(() => {
+        loading.dismiss();
+      }, 500);
+      
+    }else{
+      
+     this.getDBLocal();
+      setTimeout(() => {
+        loading.dismiss();
+      }, 500);
+     
+    }
+    
 
 
     events.subscribe('lang:changed', (lang) => {
@@ -116,7 +109,70 @@ export class Inicio {
     });
 
   }
-  insertTypeItems(typeItems,loading){
+  getDBLocal(){
+    if(localStorage.getItem('banderas')){
+       
+       this.estados = JSON.parse(localStorage.getItem('banderas'));
+       this.estados = this.estados && this.estados.playas;
+       this.insertTypeItems(JSON.parse(localStorage.getItem('data')).typeItems);
+       
+     }else{
+       
+       let alert = Alert.create({
+        title: 'Error',
+        message: "Debe tener acceso a internet para usarlo la primera vez",
+        buttons: [
+          {
+            text: 'Ok',
+            role: 'cancel',
+            handler: () => {
+                return;
+            }
+          }
+        ]
+
+      });
+      
+      this.nav.present(alert);
+       
+       
+     }
+  }
+  downloadData(){
+    
+    this.translator.load().then(data =>{
+      this.ajustes = data[localStorage.getItem('lang')]['TIT_AJUSTES'];
+      this.tiempo = data[localStorage.getItem('lang')]['TIEMPO'];
+      console.log(this.ajustes);
+      this.translator_object = data;
+      console.log(this.translator_object);
+
+      
+      setTimeout(()=>{
+        if(!this.estados){
+          this.getDBLocal();
+        }
+      },20000);
+      this.parser.getTypeItems().then(typeItems => {
+        
+        this.insertTypeItems(typeItems);
+        
+        this.banderas.getEstados().then(estados =>{
+          
+          this.estados = estados;
+          
+        });
+
+      });
+
+    });
+  }
+  
+  insertTypeItems(typeItems){
+    this.pages = new Array();
+      this.importancia1 = new Array();
+      this.importancia2 = new Array();
+      this.importancia3 = new Array();
     var i = 0;
     typeItems.forEach(typeItem => {
       this.pages.push({ idx: i,
@@ -149,7 +205,7 @@ export class Inicio {
     console.log("importancia1:",this.importancia1);
     console.log("importancia2:",this.importancia2);
     console.log("importancia3:",this.importancia3);
-    this.nav && loading.dismiss();
+    
   }
   openPage(page) {
     // Reset the content nav to have just this page
