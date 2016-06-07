@@ -86,8 +86,8 @@ export class DetallePage {
         disableDefaultUI: true
     }
     this.map = new google.maps.Map(document.getElementById("mapDetail"), mapOptions);
-    if(this.item.coordinates)
-    this.item.coordinates.forEach(coordinate => {
+    if(this.item.coordinates){
+      this.item.coordinates.forEach(coordinate => {
       let infoWindow = new google.maps.InfoWindow({
         //content: `<h5>${markerData.name}</h5>`
         content: `<ion-item>
@@ -109,6 +109,8 @@ export class DetallePage {
         infoWindow.open(this.map, marker);
       });
     });
+    }
+    
     
     
         
