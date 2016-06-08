@@ -43,13 +43,15 @@
           </ion-select>
         </ion-item>
         <div *ngIf="idTypeItem != 1006">
-          <ion-item *ngFor="let item of items" (click)="itemTapped($event,item)">
-            <ion-thumbnail item-left>
-              <img [src]="item['images'][0].image">
-            </ion-thumbnail>
-            <h2>{{item.title}}</h2>
-            <p>{{item.dates[0] && item.dates[0].startDate*1000 | date: 'dd/MM/yyyy'}}</p>
-          </ion-item>
+          <ion-card>
+            <ion-item *ngFor="let item of items" (click)="itemTapped($event,item)">
+              <ion-thumbnail item-left class="item-image">
+                <img [src]="item['images'][0].image" class="item-image">
+              </ion-thumbnail>
+              <h2>{{item.title}}</h2>
+              <p>{{item.dates[0] && item.dates[0].startDate*1000 | date: 'dd/MM/yyyy'}}</p>
+            </ion-item>
+            </ion-card>
         </div>
         <div *ngIf="idTypeItem == 1006  && loadedEstados">
           <ion-card list *ngFor="let estado of estados" (click)="itemTapped($event,estado)">
