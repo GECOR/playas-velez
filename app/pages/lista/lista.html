@@ -48,9 +48,10 @@
               <img [src]="item['images'][0].image">
             </ion-thumbnail>
             <h2>{{item.title}}</h2>
+            <p>{{item.dates[0] && item.dates[0].startDate*1000 | date: 'dd/MM/yyyy'}}</p>
           </ion-item>
         </div>
-        <div *ngIf="idTypeItem == 1006 && loadedEstados">
+        <div *ngIf="idTypeItem == 1006  && loadedEstados">
           <ion-card list *ngFor="let estado of estados" (click)="itemTapped($event,estado)">
             <img [src]="estado['backgroundImage']"><img>
             <img [src]="estado['bandera']" bandera-img>

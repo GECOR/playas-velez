@@ -1,6 +1,6 @@
 import {Page, NavController,NavParams,Alert,Platform,Loading} from 'ionic-angular';
 import {NgZone} from '@angular/core';
-import {SocialSharing} from 'ionic-native';
+import {SocialSharing,InAppBrowser} from 'ionic-native';
 import {Translator} from '../../../providers/translator';
 import {Moraga} from './moraga/moraga';
 @Page({
@@ -53,10 +53,10 @@ export class DetallePage {
 
    
         this.initGeolocation();
-      
-    let latlng = new google.maps.LatLng(this.item.coordinates && this.item.coordinates[0].latitude, this.item.coordinates && this.item.coordinates[0].longitude);
+     if(this.item.coordinates[0]){
+       let latlng = new google.maps.LatLng(this.item.coordinates[0] && this.item.coordinates[0].latitude, this.item.coordinates[0] && this.item.coordinates[0].longitude);
     this.geocoderService = new google.maps.Geocoder;
-    this.geocoderService.geocode({'location': latlng}, (results, status) => {
+    this.geocoderService && this.geocoderService.geocode({'location': latlng}, (results, status) => {
       if (status === google.maps.GeocoderStatus.OK) {
         if (results[0]) {
           this.endAddress = results[0].formatted_address;
@@ -70,6 +70,8 @@ export class DetallePage {
         loading.dismiss();
       }, 500);
     });
+     }
+    
 
 
 
@@ -80,13 +82,13 @@ export class DetallePage {
     this.directionsService = new google.maps.DirectionsService();
 
     let mapOptions = {
-        center:  new google.maps.LatLng(this.item.coordinates && this.item.coordinates[0].latitude,this.item.coordinates && this.item.coordinates[0].longitude),
+        center:  new google.maps.LatLng(this.item.coordinates[0] && this.item.coordinates[0].latitude,this.item.coordinates[0] && this.item.coordinates[0].longitude),
         zoom: 13,
         mapTypeId: google.maps.MapTypeId.ROADMAP,
         disableDefaultUI: true
     }
     this.map = new google.maps.Map(document.getElementById("mapDetail"), mapOptions);
-    if(this.item.coordinates){
+    if(this.item.coordinates[0]){
       this.item.coordinates.forEach(coordinate => {
       let infoWindow = new google.maps.InfoWindow({
         //content: `<h5>${markerData.name}</h5>`
@@ -214,6 +216,13 @@ export class DetallePage {
     });
   }
 
+  openMap(){
+    if(this.platform.is('ios')){
+      
+    }else{
+      InAppBrowser.open('http://maps.google.com/maps?   saddr='+this.latLng.lat+','+this.latLng.long+'&daddr='+this.item.coordinates[0].latitude+','+this.item.coordinates[0].longitude+'&directionsmode=driving','_system', 'location=no')
+    }
+  }
 
   openMoraga(item){
     this.nav.push(Moraga, {

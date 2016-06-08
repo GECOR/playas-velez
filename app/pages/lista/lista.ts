@@ -118,8 +118,8 @@ export class Lista {
 
 
     this.items.forEach(item => {
-
-      item.coordinates.forEach(coordinate => {
+      if(item.coordinates[0]){
+        item.coordinates.forEach(coordinate => {
         let infoWindow = new google.maps.InfoWindow({
           //content: `<h5>${markerData.name}</h5>`
           content: `<ion-item>
@@ -127,7 +127,7 @@ export class Lista {
                         <img src="${item.images[0].image}">
                       </ion-thumbnail>
                       <h2>${item.title}</h2>
-                      <span>${item.dates[0] ? new Date(item.dates[0].startDate * 1000).toLocaleString() : ""}</span><br>
+                      <span>${item.dates[0] ? new Date(item.dates[0].date * 1000).toLocaleString() : ""}</span><br>
                       <span>${item.telefono ? item.telefono : ""}</span><br>
                       <span>${item.email ? item.email : ""}</span><br>
                     </ion-item>`
@@ -142,6 +142,8 @@ export class Lista {
         });
       });
 
+      }
+      
     });
 
     google.maps.event.addListenerOnce(this.map, 'idle', () => {
