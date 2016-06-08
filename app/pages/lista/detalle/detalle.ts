@@ -218,7 +218,7 @@ export class DetallePage {
 
   openMap(){
     if(this.platform.is('ios')){
-      InAppBrowser.open('http://maps.google.com/maps?   saddr='+this.latLng.lat+','+this.latLng.long+'&daddr='+this.item.coordinates[0].latitude+','+this.item.coordinates[0].longitude+'&directionsmode=driving','_system', 'location=no')
+      InAppBrowser.open('http://maps.apple.com/?saddr='+this.startAddress+'&daddr='+this.endAddress,'_system', 'location=no')
     }else{
       InAppBrowser.open('http://maps.google.com/maps?   saddr='+this.latLng.lat+','+this.latLng.long+'&daddr='+this.item.coordinates[0].latitude+','+this.item.coordinates[0].longitude+'&directionsmode=driving','_system', 'location=no')
     }
