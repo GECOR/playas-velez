@@ -7,7 +7,7 @@
   <ion-card>
     <ion-item [ngStyle]="{'background-color': item['rightBarColor']}">
       <h2 class="text-white">{{item.title}}</h2>
-      <p>{{item.dates[0] && item.dates[0].startDate*1000 | date: 'dd/MM/yyyy'}}</p>
+      <p>{{item.dates[0] && item.dates[0].date*1000 | date: 'dd/MM/yyyy'}}</p>
     </ion-item>
     <ion-slides pager>
     <ion-slide style="background-color: green" *ngFor="let img of item.images">
