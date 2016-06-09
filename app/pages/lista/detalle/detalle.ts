@@ -83,7 +83,7 @@ export class DetallePage {
 
     let mapOptions = {
         center:  new google.maps.LatLng(this.item.coordinates[0] && this.item.coordinates[0].latitude,this.item.coordinates[0] && this.item.coordinates[0].longitude),
-        zoom: 13,
+        zoom: 16,
         mapTypeId: google.maps.MapTypeId.ROADMAP,
         disableDefaultUI: true
     }

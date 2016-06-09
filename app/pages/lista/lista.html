@@ -50,7 +50,7 @@
               </ion-thumbnail>
               <h2>{{item.title}}</h2>
               <p>{{item.dates[0] && item.dates[0].startDate*1000 | date: 'dd/MM/yyyy'}}</p>
-              <p class="description"> {{item.description.substring(0,100) + "..."}}</p>
+              <p class="description"> {{item.description && item.description.substring(0,100) + "..."}}</p>
             </ion-item>
             </ion-card>
         </div>

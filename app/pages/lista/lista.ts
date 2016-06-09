@@ -112,7 +112,7 @@ export class Lista {
 
     this.map = new google.maps.Map(mapEle, {
       center: latlng,
-      zoom: 16,
+      zoom: 12,
       disableDefaultUI: true
     });
 

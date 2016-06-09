@@ -12,7 +12,7 @@
       <ion-col home>
         <ion-card  home class="advanced-background" (click)="openPage(p[0])">
           <img home-imp1 src="{{p[0].img}}"/>
-          <p home class="advanced-background-title">{{p[0].title}}</p>
+          <p home class="advanced-background-title" *ngIf="p[0].mostrarType">{{p[0].title}}</p>
         </ion-card>
       </ion-col>
     </ion-row>
@@ -20,13 +20,13 @@
       <ion-col home width-50>
         <ion-card  home class="advanced-background" (click)="openPage(p[0])">
           <img home src="{{p[0].img}}"/>
-          <p home class="advanced-background-title">{{p[0].title}}</p>
+          <p home class="advanced-background-title" *ngIf="p[0].mostrarType">{{p[0].title}}</p>
         </ion-card>
       </ion-col>
       <ion-col home width-50>
         <ion-card  home class="advanced-background" (click)="openPage(p[1])">
           <img home src="{{p[1].img}}"/>
-          <p home class="advanced-background-title">{{p[1].title}}</p>
+          <p home class="advanced-background-title" *ngIf="p[0].mostrarType">{{p[1].title}}</p>
         </ion-card>
       </ion-col>
     </ion-row>
@@ -34,19 +34,19 @@
       <ion-col home width-33>
         <ion-card  home class="advanced-background" (click)="openPage(p[0])">
           <img home src="{{p[0].img}}"/>
-          <p home class="advanced-background-title">{{p[1].title}}</p>
+          <p home class="advanced-background-title" *ngIf="p[0].mostrarType">{{p[1].title}}</p>
         </ion-card>
       </ion-col>
       <ion-col home width-33>
         <ion-card  home class="advanced-background" (click)="openPage(p[1])">
           <img home src="{{p[1].img}}"/>
-          <p home class="advanced-background-title">{{p[1].title}}</p>
+          <p home class="advanced-background-title" *ngIf="p[0].mostrarType">{{p[1].title}}</p>
         </ion-card>
       </ion-col>
       <ion-col home width-33>
         <ion-card  home class="advanced-background" (click)="openPage(p[2])">
           <img home src="{{p[2].img}}"/>
-          <p home class="advanced-background-title">{{p[2].title}}</p>
+          <p home class="advanced-background-title" *ngIf="p[0].mostrarType">{{p[2].title}}</p>
         </ion-card>
       </ion-col>
     </ion-row>

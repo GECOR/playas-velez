@@ -16,7 +16,7 @@ import {InAppBrowser,Network,Connection} from 'ionic-native';
 
 export class Inicio {
 
-  pages: Array<{idx: number,idTypeItem: number,title: string,section: string,importance: number,img: string, component: any}>
+  pages: Array<{idx: number,idTypeItem: number,title: string,section: string,importance: number,img: string, component: any,mostrarType:boolean}>
   data: any;
   translator_object : any;
   importancia1: any[];
@@ -85,7 +85,8 @@ export class Inicio {
                             section: typeItem.type,
                             importance: typeItem.importance,
                             img: typeItem.backgroundImage,
-                            component: Lista });
+                            component: Lista,
+                            mostrarType: typeItem.mostrarType });
                             console.log(this.pages);
           i++;
           if(i === typeItems.length){
@@ -181,7 +182,8 @@ export class Inicio {
                         section: typeItem.type,
                         importance: typeItem.importance,
                         img: typeItem.backgroundImage,
-                        component: Lista });
+                        component: Lista, 
+                        mostrarType: typeItem.mostrarType});
       i++;
       
       if(i === typeItems.length){
