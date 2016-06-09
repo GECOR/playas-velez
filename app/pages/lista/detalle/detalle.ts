@@ -31,9 +31,7 @@ export class DetallePage {
   moraga:string;
   date : string
   constructor(private platform: Platform,private nav: NavController,private params: NavParams, private zone: NgZone,private translator: Translator){
-    let loading = Loading.create({content:""});
-    this.nav.present(loading);
-   
+    let loading = this.params.get('loading');   
 
       this.translator_object = this.params.get('translator');
       this.compartir = this.translator_object[localStorage.getItem('lang')]["COMPARTIR"];

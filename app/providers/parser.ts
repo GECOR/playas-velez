@@ -89,10 +89,9 @@ export class Parser {
     });
   }
 
-  getItems(index){
-    return this.getTypeItems().then(typeItems =>{
+  getItems(typeItems,index){
+  
 
       return typeItems[index].items;
-    });
   }
 }

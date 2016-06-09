@@ -64,11 +64,11 @@ export class Lista {
       this.idTypeItem = this.params.get('idTypeItem');
       this.section = this.params.get('section');
       this.estados = this.params.get('estados');
-
+     
       console.log(Object.keys(this.estados[0]))
       this.all_estados = this.estados;
 
-      this.parser.getItems(this.idx).then(lista =>{
+      let lista = this.parser.getItems(this.params.get('typeItems'),this.idx)
         this.items = lista;
         if(this.section === 'Playas'){
           this.estados.forEach(estado =>{
@@ -83,7 +83,7 @@ export class Lista {
         setTimeout(() => {
         loading.dismiss();
       }, 500);
-      });
+      
 
       this.map = null;
       this.markerArray = [];
@@ -265,23 +265,31 @@ export class Lista {
   itemTapped(event, item) {
     console.log("estado",item);
     console.log(this.nav);
+    let loading = Loading.create({content:''});
+    this.nav.present(loading);
     if(this.section === 'Playas'){
+      setTimeout(() =>{
       let item1= this.items.filter(this.childForItem(item.idItem))[0];
-
-      this.nav.push(DetallePage, {
-      'item':item1,
-      'tit': this.tit,
-      'playa': item,
-      'translator': this.translator_object
-      });
+      
+        this.nav.push(DetallePage, {
+        'item':item1,
+        'tit': this.tit,
+        'playa': item,
+        'translator': this.translator_object,
+        'loading' : loading
+        });
+      },300);
     }else if(item.pdf){
       InAppBrowser.open(item.web,"_system",'location=yes');
     }else{
+       setTimeout(() =>{
       this.nav.push(DetallePage, {
       'item':item,
       'tit': this.tit,
-      'translator': this.translator_object
+      'translator': this.translator_object,
+      'loading' : loading
       });
+      },300);
     }
 
 

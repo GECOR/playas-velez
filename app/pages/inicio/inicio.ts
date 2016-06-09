@@ -27,7 +27,8 @@ export class Inicio {
   inicio: string;
   tiempo : string;
   estados: any;
-  
+  typeItems :any;
+  loading : any;
   constructor(private app: IonicApp,
     private platform: Platform,
     private http: Http,
@@ -39,11 +40,11 @@ export class Inicio {
     private nav: NavController) {
 
       
-    let loading = Loading.create({
-    content: 'Please wait...'
+    this.loading = Loading.create({
+    content: ''
   });
 
-  this.nav.present(loading);
+  this.nav.present(this.loading);
 
  
     if(!localStorage.getItem('lang')){
@@ -54,16 +55,12 @@ export class Inicio {
     if(Network.connection != Connection.NONE){
       
       this.downloadData();  
-          setTimeout(() => {
-        loading.dismiss();
-      }, 500);
+          
       
     }else{
       
      this.getDBLocal();
-      setTimeout(() => {
-        loading.dismiss();
-      }, 500);
+     
      
     }
     
@@ -76,9 +73,9 @@ export class Inicio {
       this.importancia1 = new Array();
       this.importancia2 = new Array();
       this.importancia3 = new Array();
-      this.parser.getTypeItems().then(typeItems => {
+      
         var i = 0;
-        typeItems.forEach(typeItem => {
+        this.typeItems.forEach(typeItem => {
           this.pages.push({ idx: i,
                             idTypeItem: typeItem.idTypeItem,
                             title: typeItem[lang[0]] || typeItem.type,
@@ -89,7 +86,7 @@ export class Inicio {
                             mostrarType: typeItem.mostrarType });
                             console.log(this.pages);
           i++;
-          if(i === typeItems.length){
+          if(i === this.typeItems.length){
             for (var _i = 0; _i < this.pages.length; _i++) {
               if(this.pages[_i].importance === 1){
                 this.importancia1.push(new Array(this.pages[_i]));
@@ -107,8 +104,7 @@ export class Inicio {
         });
         
       });
-    });
-
+    
   }
   getDBLocal(){
     if(localStorage.getItem('banderas')){
@@ -116,9 +112,13 @@ export class Inicio {
        this.estados = JSON.parse(localStorage.getItem('banderas'));
        this.estados = this.estados && this.estados.playas;
        this.insertTypeItems(JSON.parse(localStorage.getItem('data')).typeItems);
-       
+        setTimeout(() => {
+        this.loading.dismiss();
+      }, 500);
      }else{
-       
+        setTimeout(() => {
+        this.loading.dismiss();
+      }, 500);
        let alert = Alert.create({
         title: 'Error',
         message: "Debe tener acceso a internet para usarlo la primera vez",
@@ -155,14 +155,16 @@ export class Inicio {
         }
       },20000);
       this.parser.getTypeItems().then(typeItems => {
-        
+        this.typeItems = typeItems;
         this.insertTypeItems(typeItems);
         
         this.banderas.getEstados().then(estados =>{
           
           this.estados = estados;
-          
-        });
+          setTimeout(() => {
+            this.loading.dismiss();
+          }, 500);
+            });
 
       });
 
@@ -231,17 +233,21 @@ export class Inicio {
      }
       
     }else{
-      let loading = Loading.create({content:""});
-      this.nav.present(loading);
-      this.nav.push(page.component,{
+     this.loading = Loading.create({content:''});
+      this.nav.present(this.loading);
+      setTimeout(() =>{
+        this.nav.push(page.component,{
         "tit":page.title,
         "section":page.section,
         "index":page.idx,
         "estados": this.estados,
         "idTypeItem": page.idTypeItem,
         "translator":this.translator_object,
-        "loading": loading
+        "loading": this.loading,
+        "typeItems" : this.typeItems
       });
+      },300)
+      
     }
 
   }
