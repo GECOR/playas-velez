@@ -213,6 +213,10 @@ export class DetallePage {
       stepDisplay.open(this.map, marker);
     });
   }
+  
+  openWeb(){
+    InAppBrowser.open(this.item.web,'_system', 'location=no')
+  }
 
   openMap(){
     if(this.platform.is('ios')){

@@ -19,6 +19,10 @@
     <p>{{item.description}}</p>
     </ion-card-content>
     <ion-item>
+      <button *ngIf="item.web" primary clear item-left (click)="openWeb()">
+        <ion-icon name="link"></ion-icon>
+        <div>Web</div>
+      </button>
       <button primary clear item-right (click)="share(item.description,item.title,item.images[0].image,item.web)">
         <ion-icon name="share"></ion-icon>
         <div>{{compartir}}</div>
