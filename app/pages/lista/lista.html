@@ -43,13 +43,14 @@
           </ion-select>
         </ion-item>
         <div *ngIf="idTypeItem != 1006">
-          <ion-card>
-            <ion-item *ngFor="let item of items" (click)="itemTapped($event,item)">
+          <ion-card *ngFor="let item of items" (click)="itemTapped($event,item)">
+            <ion-item >
               <ion-thumbnail item-left class="item-image">
                 <img [src]="item['images'][0].image" class="item-image">
               </ion-thumbnail>
               <h2>{{item.title}}</h2>
               <p>{{item.dates[0] && item.dates[0].startDate*1000 | date: 'dd/MM/yyyy'}}</p>
+              <p class="description"> {{item.description.substring(0,100) + "..."}}</p>
             </ion-item>
             </ion-card>
         </div>
