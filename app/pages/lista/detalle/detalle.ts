@@ -1,14 +1,16 @@
 import {Page, NavController,NavParams,Alert,Platform,Loading} from 'ionic-angular';
-import {NgZone} from '@angular/core';
+import {NgZone,Component, ComponentRef, Input, ViewContainerRef, ComponentResolver, ViewChild} from '@angular/core';
 import {SocialSharing,InAppBrowser} from 'ionic-native';
 import {Translator} from '../../../providers/translator';
 import {Moraga} from './moraga/moraga';
+
 @Page({
   providers: [Translator],
   templateUrl: 'build/pages/lista/detalle/detalle.html'
 })
 
 export class DetallePage {
+  
   item:any;
   tit: string;
   isAndroid: any;
@@ -29,8 +31,10 @@ export class DetallePage {
   compartir: string;
   comenzar: string;
   moraga:string;
-  date : string
-  constructor(private platform: Platform,private nav: NavController,private params: NavParams, private zone: NgZone,private translator: Translator){
+  date : string;
+  items : any;
+  
+  constructor(private resolver: ComponentResolver,private platform: Platform,private nav: NavController,private params: NavParams, private zone: NgZone,private translator: Translator){
     let loading = this.params.get('loading');   
 
       this.translator_object = this.params.get('translator');
@@ -42,6 +46,7 @@ export class DetallePage {
    
     console.log(this.item);
     this.tit = params.get('tit');
+    this.items = params.get('items');
     console.log(params.get('playa'));
     this.platform = platform;
     this.isAndroid = platform.is('android');
@@ -74,6 +79,9 @@ export class DetallePage {
 
 
   }
+ 
+
+  
   //MAP
   loadMap() {//ngAfterViewInit
 
@@ -205,6 +213,8 @@ export class DetallePage {
       this.attachInstructionText(marker, myRoute.steps[i].instructions, stepDisplay);
     }
   }
+  
+  
 
   attachInstructionText(marker, text, stepDisplay) {
     google.maps.event.addListener(marker, 'click', function() {
@@ -214,9 +224,36 @@ export class DetallePage {
     });
   }
   
+  childForItem(idItem){
+    console.log("idItem",idItem);
+    return function(item){
+      console.log(item);
+      // ES == PORQUE LLEGA UN STRING Y HAY QUE COMPARARLO CON UN ENTERO
+      return item.idItem == idItem;
+    }
+  }
+  
   openWeb(){
     InAppBrowser.open(this.item.web,'_system', 'location=no')
   }
+  
+  openPlayaAsociada(idItem){
+    let loading = Loading.create({content:''});
+    this.nav.present(loading);
+     setTimeout(() =>{
+      let item1= this.items.filter(this.childForItem(idItem))[0];
+      console.log(item1);
+        this.nav.push(DetallePage, {
+        'item':item1,
+        'tit': this.tit,
+        
+        'translator': this.translator_object,
+        'loading' : loading
+        });
+      },300);
+  }
+  
+  
 
   openMap(){
     if(this.platform.is('ios')){

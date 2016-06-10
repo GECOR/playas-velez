@@ -40,9 +40,10 @@
             <ion-option value="Todas">{{todas}}</ion-option>
             <ion-option value="Q">{{certificado_q}}</ion-option>
             <ion-option value="adaptadas">{{adaptadass}}</ion-option>
+            <ion-option value="moragas">{{moragass}}</ion-option>
           </ion-select>
         </ion-item>
-        <div *ngIf="idTypeItem != 1006">
+        <div *ngIf="idTypeItem != 1006 && idTypeItem != 1015">
           <ion-card *ngFor="let item of items" (click)="itemTapped($event,item)">
             <ion-item >
               <ion-thumbnail item-left class="item-image">
@@ -58,19 +59,14 @@
           <ion-card list *ngFor="let estado of estados" (click)="itemTapped($event,estado)">
             <img [src]="estado['backgroundImage']"><img>
             <img [src]="estado['bandera']" bandera-img>
-            <!--<div class="right-bar" [ngStyle]="{'background-color': estado['rightBarColor']}"></div>-->
-            <!--<ion-card-content>
-              <ion-row>
-                <ion-col list width-25>
-                  <ion-thumbnail item-left>
-                    <img [src]="estado['bandera']" incident-img>
-                  </ion-thumbnail>
-                </ion-col>
-                <ion-col list width-75>
-                  <h2>{{estado["nombre"]}}</h2>
-                </ion-col>
-              </ion-row>
-            </ion-card-content>-->
+            
+          </ion-card>
+        </div>
+        <div *ngIf="idTypeItem == 1015  && loadedEstados">
+          <ion-card list *ngFor="let estado of estados" (click)="itemTapped($event,estado)">
+            <img [src]="estado['backgroundImage']"><img>
+            <img [src]="estado['bandera']" bandera-img>
+            
           </ion-card>
         </div>
     </ion-list>

@@ -232,6 +232,23 @@ export class Inicio {
         InAppBrowser.open('https://play.google.com/store/apps/details?id=com.gecor.VelezMalaga','_system','location=yes'); 
      }
       
+    }else if(page.idTypeItem === 1015){
+    
+    this.loading = Loading.create({content:''});
+      this.nav.present(this.loading);
+      setTimeout(() =>{
+        this.nav.push(page.component,{
+        "tit":this.translator_object[localStorage.getItem('lang')]['MORAGA'],
+        "section":this.pages[0].section,
+        "index":this.pages[0].idx,
+        "estados": this.estados,
+        "idTypeItem": page.idTypeItem,
+        "translator":this.translator_object,
+        "loading": this.loading,
+        "typeItems" : this.typeItems
+      });
+      },300)
+  
     }else{
      this.loading = Loading.create({content:''});
       this.nav.present(this.loading);

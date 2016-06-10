@@ -1,6 +1,6 @@
   <ion-navbar *navbar >
 
-  <ion-title>{{item.title}}</ion-title>
+  <ion-title>{{tit}}</ion-title>
 </ion-navbar>
 <ion-content class="has-header">
 
@@ -16,7 +16,7 @@
 
   </ion-slides>
     <ion-card-content>
-    <p>{{item.description}}</p>
+    <p  [innerHTML]="item.description"></p>
     </ion-card-content>
     <ion-item>
       <button *ngIf="item.web" primary clear item-left (click)="openWeb()">

@@ -6,6 +6,7 @@ import {Translator} from '../../providers/translator';
 import {InAppBrowser} from 'ionic-native';
 import {Banderas} from '../../providers/banderas';
 import {Inicio} from './../inicio/inicio';
+import {Moraga} from './detalle/moraga/moraga';
 
 @Page({
   templateUrl: 'build/pages/lista/lista.html',
@@ -37,6 +38,7 @@ export class Lista {
     todas: string;
     certificado_q : string;
     adaptadass : string;
+    moragass : string;
     section: string;
     estados =[];
     idTypeItem: number;
@@ -55,7 +57,7 @@ export class Lista {
         this.todas = this.translator_object[localStorage.getItem('lang')]['TODAS'];
         this.certificado_q = this.translator_object[localStorage.getItem('lang')]['CERTIFICADO_Q'];
         this.adaptadass = this.translator_object[localStorage.getItem('lang')]['ADAPTADAS'];
-      
+        this.moragass = this.translator_object[localStorage.getItem('lang')]['MORAGA'];
 
       this.params = params;
 
@@ -93,6 +95,9 @@ export class Lista {
       this.directionsService = new google.maps.DirectionsService;
       this.directionsDisplay = new google.maps.DirectionsRenderer;
       this.initGeolocation();
+      if(this.idTypeItem == 1015){
+        this.filterList('moragas');
+      }
 
   }
 
@@ -112,7 +117,7 @@ export class Lista {
 
     this.map = new google.maps.Map(mapEle, {
       center: latlng,
-      zoom: 12,
+      zoom: 11,
       disableDefaultUI: true
     });
 
@@ -265,9 +270,10 @@ export class Lista {
   itemTapped(event, item) {
     console.log("estado",item);
     console.log(this.nav);
-    let loading = Loading.create({content:''});
+    
+    if(this.idTypeItem == 1006 ){
+      let loading = Loading.create({content:''});
     this.nav.present(loading);
-    if(this.section === 'Playas'){
       setTimeout(() =>{
       let item1= this.items.filter(this.childForItem(item.idItem))[0];
       
@@ -279,11 +285,25 @@ export class Lista {
         'loading' : loading
         });
       },300);
-    }else if(item.pdf){
+    }else if(this.idTypeItem == 1015){
+      
+       setTimeout(() =>{
+        let item1= this.items.filter(this.childForItem(item.idItem))[0];
+        this.nav.push(Moraga, {
+        'item':item1,
+        'playa': item,
+        'translator': this.translator_object
+        });
+      },300);
+      
+  }else if(item.pdf){
       InAppBrowser.open(item.web,"_system",'location=yes');
     }else{
+      let loading = Loading.create({content:''});
+    this.nav.present(loading);
        setTimeout(() =>{
       this.nav.push(DetallePage, {
+      'items': this.items,
       'item':item,
       'tit': this.tit,
       'translator': this.translator_object,
@@ -293,6 +313,10 @@ export class Lista {
     }
 
 
+  }
+  moragas(item){
+
+    return item.moraga === true;
   }
   adaptadas(item){
 
@@ -321,6 +345,14 @@ export class Lista {
         //this.estados = this.items.filter(this.Q);
           let aux ;
         aux = this.items.filter(this.Q);
+        this.estados = [];
+        for(var i = 0; i< aux.length;i++){
+          this.estados.push(this.all_estados.filter(this.childForItem(aux[i].idItem))[0]);
+        }          
+      }else if (filter === 'moragas') {
+       
+          let aux ;
+        aux = this.items.filter(this.moragas);
         this.estados = [];
         for(var i = 0; i< aux.length;i++){
           this.estados.push(this.all_estados.filter(this.childForItem(aux[i].idItem))[0]);
