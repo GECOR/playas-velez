@@ -4,8 +4,9 @@ import {Parser} from '../../providers/parser';
 import {Translator} from '../../providers/translator';
 import {Events} from 'ionic-angular';
 import {Inicio} from './../inicio/inicio';
+import {Component} from '@angular/core'
 
-@Page({
+@Component({
   templateUrl: 'build/pages/ajustes/ajustes.html',
   providers: [Parser,Translator]
 })

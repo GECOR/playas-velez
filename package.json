@@ -1,6 +1,6 @@
 {
-"name": "playas-2016",
-"description": "playas-2016: An Ionic project",
+  "name": "playas-2016",
+  "description": "playas-2016: An Ionic project",
   "dependencies": {
     "@angular/common": "2.0.0-rc.1",
     "@angular/compiler": "2.0.0-rc.1",
@@ -12,7 +12,7 @@
     "angular2-google-maps": "0.9.0",
     "angular2-jwt": "^0.1.15",
     "es6-shim": "0.35.0",
-    "ionic-angular": "2.0.0-beta.7",
+    "ionic-angular": "^2.0.0-beta.8",
     "ionic-native": "^1.1.0",
     "ionicons": "3.0.0",
     "moment": "^2.12.0",

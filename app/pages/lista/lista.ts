@@ -7,8 +7,9 @@ import {InAppBrowser} from 'ionic-native';
 import {Banderas} from '../../providers/banderas';
 import {Inicio} from './../inicio/inicio';
 import {Moraga} from './detalle/moraga/moraga';
+import {Component} from '@angular/core';
 
-@Page({
+@Component({
   templateUrl: 'build/pages/lista/lista.html',
   providers: [Parser,Banderas]
 })
@@ -69,7 +70,7 @@ export class Lista {
      
       console.log(Object.keys(this.estados[0]))
       this.all_estados = this.estados;
-
+      
       let lista = this.parser.getItems(this.params.get('typeItems'),this.idx)
         this.items = lista;
         if(this.section === 'Playas'){
@@ -81,6 +82,9 @@ export class Lista {
             }            
           })
         }
+        if(this.idTypeItem == 1015){
+        this.filterList('moragas');
+      }
         this.loadedEstados = true;
         setTimeout(() => {
         loading.dismiss();
@@ -95,9 +99,7 @@ export class Lista {
       this.directionsService = new google.maps.DirectionsService;
       this.directionsDisplay = new google.maps.DirectionsRenderer;
       this.initGeolocation();
-      if(this.idTypeItem == 1015){
-        this.filterList('moragas');
-      }
+      
 
   }
 
@@ -120,10 +122,28 @@ export class Lista {
       zoom: 11,
       disableDefaultUI: true
     });
+    
+    if(this.idTypeItem == 1015){
+      this.estados.forEach(estado =>{
+            let item1= this.items.filter(this.childForItem(estado.idItem))[0];
+            if (item1 != undefined){
+              this.addMarkOnMap(item1,mapEle);
+            }            
+          })
+    }else{
+       this.items.forEach(item => {
+      
+      this.addMarkOnMap(item,mapEle);
+
+    });
+    }
 
 
-    this.items.forEach(item => {
-      if(item.coordinates[0]){
+   
+  }
+
+  addMarkOnMap(item,mapEle){
+    if(item.coordinates[0]){
         item.coordinates.forEach(coordinate => {
         let infoWindow = new google.maps.InfoWindow({
           //content: `<h5>${markerData.name}</h5>`
@@ -135,11 +155,20 @@ export class Lista {
                       <span>${item.dates[0] ? new Date(item.dates[0].date * 1000).toLocaleString() : ""}</span><br>
                       <span>${item.telefono ? item.telefono : ""}</span><br>
                       <span>${item.email ? item.email : ""}</span><br>
+                      <a *ngIf="item.moraga" primary clear item-right >
+                      <div id='myInfoWinDiv'>Solicitud de moraga</div>
+                    </a>
                     </ion-item>`
         });
+        
         let marker = new google.maps.Marker({
           position: new google.maps.LatLng(coordinate.latitude, coordinate.longitude),
           map: this.map
+        });
+        
+        var myButton = document.getElementById('myInfoWinDiv');
+        google.maps.event.addDomListener(myButton, 'click', () => {
+          this.itemTapped('click',item)
         });
 
         marker.addListener('click', () => {
@@ -149,11 +178,10 @@ export class Lista {
 
       }
       
-    });
+    
 
     google.maps.event.addListenerOnce(this.map, 'idle', () => {
       mapEle.classList.add('show-map');
-
     });
   }
 

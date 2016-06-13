@@ -1,24 +1,22 @@
-import {App, IonicApp, Platform,NavController, Loading, Nav} from 'ionic-angular';
+
 import {Http} from '@angular/http';
 import {Lista} from './pages/lista/lista';
 import {Parser} from './providers/parser';
 import {Ajustes} from './pages/ajustes/ajustes';
 import {Translator} from './providers/translator';
 import {ViewChild, NgZone, Component} from '@angular/core';
+import {App, Platform,NavController, Loading, Nav,ionicBootstrap} from 'ionic-angular';
 import {Events} from 'ionic-angular';
 import {Inicio} from './pages/inicio/inicio';
 import {Splashscreen} from 'ionic-native';
 import {Banderas} from './providers/banderas';
 
-@App({
+@Component({
   templateUrl: 'build/app.html',
-  providers: [Parser,Translator,Banderas],
-  config: {
-    backButtonText: ''
-  } // http://ionicframework.com/docs/v2/api/config/Config/
+ 
 })
 
-class MyApp {
+ class MyApp {
   
   @ViewChild(Nav) nav: Nav;
    
@@ -35,7 +33,7 @@ class MyApp {
   tiempo : string;
   estados : any;
   
-  constructor(private app: IonicApp,
+  constructor(private app: App,
     private platform: Platform,
     private http: Http,
     private parser: Parser,
@@ -105,3 +103,13 @@ class MyApp {
     */
   }
 }
+// Pass the main app component as the first argument
+// Pass any providers for your app in the second argument
+// Set any config for your app as the third argument:
+// http://ionicframework.com/docs/v2/api/config/Config/
+
+ionicBootstrap(MyApp, [Parser,Translator,Banderas],{
+  
+    backButtonText: ''
+
+});

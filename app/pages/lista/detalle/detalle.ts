@@ -4,7 +4,7 @@ import {SocialSharing,InAppBrowser} from 'ionic-native';
 import {Translator} from '../../../providers/translator';
 import {Moraga} from './moraga/moraga';
 
-@Page({
+@Component({
   providers: [Translator],
   templateUrl: 'build/pages/lista/detalle/detalle.html'
 })

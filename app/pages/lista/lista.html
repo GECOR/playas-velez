@@ -36,7 +36,7 @@
       <ion-list *ngSwitchWhen="'Lista'">
         <ion-item *ngIf="idTypeItem == 1006">
           <ion-label>{{filtrar}}</ion-label>
-          <ion-select [(ngModel)]="filter" (change)="filterList(filter)">
+          <ion-select [(ngModel)]="filter" (ionChange)="filterList(filter)">
             <ion-option value="Todas">{{todas}}</ion-option>
             <ion-option value="Q">{{certificado_q}}</ion-option>
             <ion-option value="adaptadas">{{adaptadass}}</ion-option>
@@ -67,7 +67,7 @@
 
     <div id="container-map" *ngSwitchWhen="'Mapa'">
       <div id="map" ></div>
-      <button clear (click)="calculateAndDisplayRoute()">
+      <button *ngIf="idTypeItem != 1015" clear (click)="calculateAndDisplayRoute()">
         <ion-icon name='navigate'></ion-icon>
       {{ruta}}
       </button>

@@ -1,4 +1,4 @@
-import {Page, IonicApp, Platform,NavController,Loading,Alert} from 'ionic-angular';
+import {Page, Platform,NavController,Loading,Alert} from 'ionic-angular';
 import {Http} from '@angular/http';
 import {Lista} from '../lista/lista';
 import {Parser} from '../../providers/parser';
@@ -8,7 +8,7 @@ import {NgZone, Component,ViewChild} from '@angular/core';
 import {Events} from 'ionic-angular';
 import {Banderas} from '../../providers/banderas';
 import {InAppBrowser,Network,Connection} from 'ionic-native';
-@Page({
+@Component({
   templateUrl: 'build/pages/inicio/inicio.html',
   providers: [Parser,Translator,Banderas]
   
@@ -29,7 +29,7 @@ export class Inicio {
   estados: any;
   typeItems :any;
   loading : any;
-  constructor(private app: IonicApp,
+  constructor(
     private platform: Platform,
     private http: Http,
     private parser: Parser,

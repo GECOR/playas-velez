@@ -10,7 +10,7 @@ import * as moment_ from 'moment';
 import {Http,Headers, RequestOptions} from '@angular/http';
 const moment: moment.MomentStatic = (<any>moment_)['default'] || moment_;
 
-@Page({
+@Component({
   templateUrl: 'build/pages/lista/detalle/moraga/moraga.html',
   providers: [Parser,Translator]
 })
