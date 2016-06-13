@@ -6,7 +6,7 @@
 
   <ion-card>
     <ion-item [ngStyle]="{'background-color': item['rightBarColor']}">
-      <h2 class="text-white">{{item.title}}</h2>
+      <h2 >{{item.title}}</h2>
       <p>{{item.dates[0] && item.dates[0].date*1000 | date: 'dd/MM/yyyy'}}</p>
     </ion-item>
     <ion-slides pager>

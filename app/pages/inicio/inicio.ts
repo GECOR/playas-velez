@@ -238,7 +238,7 @@ export class Inicio {
       this.nav.present(this.loading);
       setTimeout(() =>{
         this.nav.push(page.component,{
-        "tit":this.translator_object[localStorage.getItem('lang')]['MORAGA'],
+        "tit":this.translator_object[localStorage.getItem('lang')]['SELECCIONA_PLAYA'],
         "section":this.pages[0].section,
         "index":this.pages[0].idx,
         "estados": this.estados,

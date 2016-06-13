@@ -40,7 +40,8 @@
     "VALIDATE_DIA": "La fecha debe ser posterior a cinco días",
     "VALIDATE_NUM_ASIST": "Por favor, escriba el número de asistentes",
     "VALIDATE_AVISO": "Por favor, acepta el aviso legal",
-    "ATENCION": "Atención"
+    "ATENCION": "Atención",
+    "SELECCIONA_PLAYA": "Seleccione playa"
   },
   "ca": {
     "DATOS_MOVILES": "Utilitzar dades mòbils",
@@ -83,7 +84,8 @@
     "VALIDATE_DIA": "La data ha de ser posterior a cinc dies",
     "VALIDATE_NUM_ASIST": "Si us plau , escriviu el nombre d'assistents",
     "VALIDATE_AVISO": "Si us plau , accepta l'avís legal",
-    "ATENCION": "Atenció"
+    "ATENCION": "Atenció",
+    "SELECCIONA_PLAYA": "Seleccioneu platja"
   },
   "eu": {
     "DATOS_MOVILES": "Datu mugikorrak erabiliz",
@@ -126,7 +128,8 @@
     "VALIDATE_DIA": "Baino bost egun ondoren gertatu behar",
       "VALIDATE_NUM_ASIST": "Mesedez sartu bertaratuen kopurua",
     "VALIDATE_AVISO": "Mesedez, onartu ezespena",
-    "ATENCION": "Arreta"
+    "ATENCION": "Arreta",
+    "SELECCIONA_PLAYA": "Aukeratu hondartza"
   },
   "en": {
     "DATOS_MOVILES": "Use mobile data",
@@ -169,7 +172,8 @@
     "VALIDATE_DIA": "The date must occur after five days",
     "VALIDATE_NUM_ASIST": "Please enter the number of attendees",
     "VALIDATE_AVISO": "Please accept the disclaimer",
-    "ATENCION": "Attention"
+    "ATENCION": "Attention",
+    "SELECCIONA_PLAYA": "Select beach"
   },
   "de": {
     "DATOS_MOVILES": "Mit mobilen Daten",
@@ -212,7 +216,8 @@
     "VALIDATE_DIA": "Das Datum muss nach fünf Tagen auftreten",
     "VALIDATE_NUM_ASIST": "Bitte geben Sie die Anzahl der Teilnehmer",
     "VALIDATE_AVISO": "Bitte akzeptieren Sie die Nutzungsbedingungen",
-    "ATENCION": "Aufmerksamkeit"
+    "ATENCION": "Aufmerksamkeit",
+    "SELECCIONA_PLAYA": "Wählen Sie Strand"
   },
   "fr": {
     "DATOS_MOVILES": "En utilisant des données mobiles",
@@ -255,6 +260,7 @@
     "VALIDATE_DIA": "La date doit se produire après cinq jours",
     "VALIDATE_NUM_ASIST": "S'il vous plaît entrer le numéro d'assistants",
     "VALIDATE_AVISO": "S'il vous plaît accepter l'avertissement",
-    "ATENCION": "Attention"
+    "ATENCION": "Attention",
+    "SELECCIONA_PLAYA": "Sélectionnez la plage"
   }
 }
