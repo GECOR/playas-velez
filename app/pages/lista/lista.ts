@@ -141,6 +141,53 @@ export class Lista {
 
    
   }
+  itemTapped(event, item) {
+    console.log("estado",item);
+    console.log(this.nav);
+    
+    if(this.idTypeItem == 1006 ){
+      let loading = Loading.create({content:''});
+    this.nav.present(loading);
+      setTimeout(() =>{
+      let item1= this.items.filter(this.childForItem(item.idItem))[0];
+      
+        this.nav.push(DetallePage, {
+        'item':item1,
+        'tit': this.tit,
+        'playa': item,
+        'translator': this.translator_object,
+        'loading' : loading
+        });
+      },300);
+    }else if(this.idTypeItem == 1015){
+      
+       setTimeout(() =>{
+        let item1= this.items.filter(this.childForItem(item.idItem))[0];
+        this.nav.push(Moraga, {
+        'item':item1,
+        'playa': item,
+        'translator': this.translator_object
+        });
+      },300);
+      
+  }else if(item.pdf){
+      InAppBrowser.open(item.web,"_system",'location=yes');
+    }else{
+      let loading = Loading.create({content:''});
+    this.nav.present(loading);
+       setTimeout(() =>{
+      this.nav.push(DetallePage, {
+      'items': this.items,
+      'item':item,
+      'tit': this.tit,
+      'translator': this.translator_object,
+      'loading' : loading
+      });
+      },300);
+    }
+
+
+  }
 
   addMarkOnMap(item,mapEle){
     if(item.coordinates[0]){
@@ -166,10 +213,14 @@ export class Lista {
           map: this.map
         });
         
-        var myButton = document.getElementById('myInfoWinDiv');
-        google.maps.event.addDomListener(myButton, 'click', () => {
-          this.itemTapped('click',item)
+        google.maps.event.addListener(infoWindow, 'domready', function(){
+          var myButton = document.getElementById('myInfoWinDiv');
+        myButton.addEventListener("click", function(){
+            this.itemTapped('click',item);
         });
+      }); 
+        
+        
 
         marker.addListener('click', () => {
           infoWindow.open(this.map, marker);
@@ -295,53 +346,7 @@ export class Lista {
 
 //END MAP
 
-  itemTapped(event, item) {
-    console.log("estado",item);
-    console.log(this.nav);
-    
-    if(this.idTypeItem == 1006 ){
-      let loading = Loading.create({content:''});
-    this.nav.present(loading);
-      setTimeout(() =>{
-      let item1= this.items.filter(this.childForItem(item.idItem))[0];
-      
-        this.nav.push(DetallePage, {
-        'item':item1,
-        'tit': this.tit,
-        'playa': item,
-        'translator': this.translator_object,
-        'loading' : loading
-        });
-      },300);
-    }else if(this.idTypeItem == 1015){
-      
-       setTimeout(() =>{
-        let item1= this.items.filter(this.childForItem(item.idItem))[0];
-        this.nav.push(Moraga, {
-        'item':item1,
-        'playa': item,
-        'translator': this.translator_object
-        });
-      },300);
-      
-  }else if(item.pdf){
-      InAppBrowser.open(item.web,"_system",'location=yes');
-    }else{
-      let loading = Loading.create({content:''});
-    this.nav.present(loading);
-       setTimeout(() =>{
-      this.nav.push(DetallePage, {
-      'items': this.items,
-      'item':item,
-      'tit': this.tit,
-      'translator': this.translator_object,
-      'loading' : loading
-      });
-      },300);
-    }
-
-
-  }
+  
   moragas(item){
 
     return item.moraga === true;
