@@ -202,9 +202,7 @@ export class Lista {
                       <span>${item.dates[0] ? new Date(item.dates[0].date * 1000).toLocaleString() : ""}</span><br>
                       <span>${item.telefono ? item.telefono : ""}</span><br>
                       <span>${item.email ? item.email : ""}</span><br>
-                      <a *ngIf="item.moraga" primary clear item-right >
-                      <div id='myInfoWinDiv'>Solicitud de moraga</div>
-                    </a>
+                      <p>${item.description ? item.description : ""}</p><br>
                     </ion-item>`
         });
         
@@ -213,14 +211,7 @@ export class Lista {
           map: this.map
         });
         
-        google.maps.event.addListener(infoWindow, 'domready', function(){
-          var myButton = document.getElementById('myInfoWinDiv');
-        myButton.addEventListener("click", function(){
-            this.itemTapped('click',item);
-        });
-      }); 
-        
-        
+      
 
         marker.addListener('click', () => {
           infoWindow.open(this.map, marker);
