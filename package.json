@@ -40,7 +40,7 @@
     "cordova-plugin-geolocation",
     "cordova-plugin-inappbrowser",
     "cordova-plugin-splashscreen",
-    "cordova plugin cordova-plugin-network-information"
+    "cordova-plugin-network-information"
   ],
   "cordovaPlatforms": [
     "cordova-ios@4.0.0",

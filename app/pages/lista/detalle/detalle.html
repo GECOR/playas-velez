@@ -16,7 +16,7 @@
 
   </ion-slides>
     <ion-card-content>
-    <p  [innerHTML]="item.description"></p>
+    <div  [innerHTML]="item.description"></div>
     </ion-card-content>
     <ion-item>
       <button *ngIf="item.web" primary clear item-left (click)="openWeb()">
