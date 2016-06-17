@@ -10,7 +10,7 @@ import {Events} from 'ionic-angular';
 import {Inicio} from './pages/inicio/inicio';
 import {Splashscreen} from 'ionic-native';
 import {Banderas} from './providers/banderas';
-
+import {Push} from 'ionic-native';
 @Component({
   templateUrl: 'build/app.html',
  
@@ -56,20 +56,28 @@ import {Banderas} from './providers/banderas';
     setTimeout(function() {
     Splashscreen.hide();
         }, 100);
-      // The platform is now ready. Note: if this callback fails to fire, follow
-      // the Troubleshooting guide for a number of possible solutions:
-      //
-      // Okay, so the platform is ready and our plugins are available.
-      // Here you can do any higher level native things you might need.
-      //
-      // First, let's hide the keyboard accessory bar (only works natively) since
-      // that's a better default:
-      //
-      // Keyboard.setAccessoryBarVisible(false);
-      //
-      // For example, we might change the StatusBar color. This one below is
-      // good for dark backgrounds and light text:
-      // StatusBar.setStyle(StatusBar.LIGHT_CONTENT)
+       var push = Push.init({
+          android: {
+            senderID: "1060313159714"
+          },
+          ios: {
+            alert: "true",
+            badge: true,
+            sound: 'false'
+          },
+          windows: {}
+        });
+        push.on('registration', (data) => {
+          console.log(data.registrationId);
+          alert(data.registrationId.toString());
+        });
+        push.on('notification', (data) => {
+          console.log(data);
+          alert("Hi, Am a push notification");
+        });
+        push.on('error', (e) => {
+          console.log(e.message);
+        });
     });
   }
 
