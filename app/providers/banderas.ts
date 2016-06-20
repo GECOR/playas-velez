@@ -1,6 +1,12 @@
 import {Injectable} from '@angular/core';
 import {Http} from '@angular/http';
 
+/*********************************
+ * 
+ * ESTA CLASE OBTIENE DEL SERVIDOR LOS DATOS
+ * RELATIVOS AL ESTADO DE LAS PLAYAS
+ * 
+ */
 
 @Injectable()
 export class Banderas {
@@ -11,11 +17,11 @@ export class Banderas {
   load() {
 
       return new Promise(resolve => {
-
+       // Si el usuario no quiere utilizar datos móviles
         if(localStorage.getItem('online') === "false"){
           resolve(JSON.parse(localStorage.getItem('banderas')));
         }else{
-
+          // Si quiere los pedimos al servidor
 
           this.http.get('http://gecorsystem.com/ApiVelez/api/Data/estados',null).subscribe(res => {
 
@@ -28,6 +34,8 @@ export class Banderas {
         }
       });
   }
+  
+    // Crea la estructura JSON que vamos a utilizar y la inserta en localStorage
 
     processResponse(json){
    this.data = {playas:[]};
@@ -42,12 +50,17 @@ export class Banderas {
    localStorage.setItem('banderas',JSON.stringify(this.data));
    return this.data;
   }
+  
+  // Obtiene los estados del JSON
 
   getEstados(){
-    return this.load().then(data =>{
+    return this.load().then((data: { playas: any; }) =>{
       return data.playas;
     })
   }
+  
+  // Devuelve la ruta a la imagen de la bandera
+  
   banderaParaEstado(estado){
     return 'img/'+ estado + ".png";
   }

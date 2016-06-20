@@ -1,7 +1,15 @@
 import {Injectable} from '@angular/core';
 import {Http} from '@angular/http';
 
-
+/******************************************
+ * ESTA CLASE LEE EL ARCHIVO DONDE ESTÁN LAS 
+ * TRADUCCIONES DE LA APLICIÓN
+ * TODAS LAS TRADUCCIONES DEBEN CREARSE AQUÍ
+ * SI ES UN TYPEITEM, DEBE ESTAR EN BASE DE DATOS
+ * 
+ * SE PODRÍAN METER ESTAS TRADUCCIONES EN BASE DE DATOS
+ * CREANDO UNA COLUMNA POR CADA IDIOMA
+ */
 
 @Injectable()
 export class Translator {
@@ -26,12 +34,6 @@ export class Translator {
         this.translator = res.json();
         resolve(this.translator);
       });
-    });
-  }
-
-  getTranslator(){
-    this.load().then(trans =>{
-      return trans;
     });
   }
 }

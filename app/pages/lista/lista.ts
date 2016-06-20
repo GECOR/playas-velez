@@ -47,18 +47,17 @@ export class Lista {
     
     constructor(private nav: NavController, private params : NavParams, private parser: Parser, private banderas : Banderas, private _ngZone: NgZone,private translator: Translator) {
       let loading = this.params.get('loading');
-      
-      
-        this.translator_object = this.params.get('translator');
-        this.lista = this.translator_object[localStorage.getItem('lang')]['LISTA'];
-        this.mapa = this.translator_object[localStorage.getItem('lang')]['MAPA'];
-        this.galeria = this.translator_object[localStorage.getItem('lang')]['GALERIA'];
-        this.ruta = this.translator_object[localStorage.getItem('lang')]['RUTA'];
-        this.filtrar = this.translator_object[localStorage.getItem('lang')]['FILTRAR'];
-        this.todas = this.translator_object[localStorage.getItem('lang')]['TODAS'];
-        this.certificado_q = this.translator_object[localStorage.getItem('lang')]['CERTIFICADO_Q'];
-        this.adaptadass = this.translator_object[localStorage.getItem('lang')]['ADAPTADAS'];
-        this.moragass = this.translator_object[localStorage.getItem('lang')]['MORAGA'];
+            
+      this.translator_object = this.params.get('translator');
+      this.lista = this.translator_object[localStorage.getItem('lang')]['LISTA'];
+      this.mapa = this.translator_object[localStorage.getItem('lang')]['MAPA'];
+      this.galeria = this.translator_object[localStorage.getItem('lang')]['GALERIA'];
+      this.ruta = this.translator_object[localStorage.getItem('lang')]['RUTA'];
+      this.filtrar = this.translator_object[localStorage.getItem('lang')]['FILTRAR'];
+      this.todas = this.translator_object[localStorage.getItem('lang')]['TODAS'];
+      this.certificado_q = this.translator_object[localStorage.getItem('lang')]['CERTIFICADO_Q'];
+      this.adaptadass = this.translator_object[localStorage.getItem('lang')]['ADAPTADAS'];
+      this.moragass = this.translator_object[localStorage.getItem('lang')]['MORAGA'];
 
       this.params = params;
 
@@ -68,29 +67,35 @@ export class Lista {
       this.section = this.params.get('section');
       this.estados = this.params.get('estados');
      
-      console.log(Object.keys(this.estados[0]))
+      // Variable auxiliar necesaria para filtrar posteriormente
       this.all_estados = this.estados;
       
-      let lista = this.parser.getItems(this.params.get('typeItems'),this.idx)
-        this.items = lista;
-        if(this.section === 'Playas'){
-          this.estados.forEach(estado =>{
-            let item1= this.items.filter(this.childForItem(estado.idItem))[0];
-            if (item1 != undefined){
-              estado.rightBarColor = item1.rightBarColor;
-              estado.backgroundImage = item1.backgroundImage;
-            }            
-          })
-        }
-        if(this.idTypeItem == 1015){
+      // Recibimos los items enviados como parametro del nav
+      this.items = this.parser.getItems(this.params.get('typeItems'),this.idx)
+      
+      // Si estamos en playas, debemos crear los estados asociados a cada uno de los items,
+      // Ya que en base de datos están en tablas diferentes
+      if(this.section === 'Playas'){
+        this.estados.forEach(estado =>{
+          let item1= this.items.filter(this.childForItem(estado.idItem))[0];
+          if (item1 != undefined){
+            estado.rightBarColor = item1.rightBarColor;
+            estado.backgroundImage = item1.backgroundImage;
+          }            
+        })
+      }
+      // Si venimos de clickar en solicitud de moraga, hay que filtrar por moragas
+      if(this.idTypeItem == 1015){
         this.filterList('moragas');
       }
-        this.loadedEstados = true;
-        setTimeout(() => {
+      this.loadedEstados = true;
+      
+      // Todo listo, quitamos el loading
+      setTimeout(() => {
         loading.dismiss();
       }, 500);
       
-
+      // Inicializamos las variables para el mapa
       this.map = null;
       this.markerArray = [];
       this.travelMode = 'WALKING';
@@ -98,6 +103,7 @@ export class Lista {
       this.distanceTravel = '0 km';
       this.directionsService = new google.maps.DirectionsService;
       this.directionsDisplay = new google.maps.DirectionsRenderer;
+      // Llamamos al geolocalizador
       this.initGeolocation();
       
 
@@ -122,7 +128,7 @@ export class Lista {
       zoom: 11,
       disableDefaultUI: true
     });
-    
+    // Si venimos de solicitud de moraga, solo ponemos marca donde se pueda hacer moraga
     if(this.idTypeItem == 1015){
       this.estados.forEach(estado =>{
             let item1= this.items.filter(this.childForItem(estado.idItem))[0];
@@ -142,15 +148,14 @@ export class Lista {
    
   }
   itemTapped(event, item) {
-    console.log("estado",item);
-    console.log(this.nav);
     
     if(this.idTypeItem == 1006 ){
       let loading = Loading.create({content:''});
-    this.nav.present(loading);
-      setTimeout(() =>{
-      let item1= this.items.filter(this.childForItem(item.idItem))[0];
+      this.nav.present(loading);
       
+      setTimeout(() =>{
+        let item1= this.items.filter(this.childForItem(item.idItem))[0];
+        
         this.nav.push(DetallePage, {
         'item':item1,
         'tit': this.tit,
@@ -164,29 +169,27 @@ export class Lista {
        setTimeout(() =>{
         let item1= this.items.filter(this.childForItem(item.idItem))[0];
         this.nav.push(Moraga, {
-        'item':item1,
-        'playa': item,
-        'translator': this.translator_object
+          'item':item1,
+          'playa': item,
+          'translator': this.translator_object
         });
       },300);
       
-  }else if(item.pdf){
+    }else if(item.pdf){
       InAppBrowser.open(item.web,"_system",'location=yes');
     }else{
       let loading = Loading.create({content:''});
-    this.nav.present(loading);
-       setTimeout(() =>{
-      this.nav.push(DetallePage, {
-      'items': this.items,
-      'item':item,
-      'tit': this.tit,
-      'translator': this.translator_object,
-      'loading' : loading
-      });
+      this.nav.present(loading);
+      setTimeout(() =>{
+        this.nav.push(DetallePage, {
+          'items': this.items,
+          'item':item,
+          'tit': this.tit,
+          'translator': this.translator_object,
+          'loading' : loading
+        });
       },300);
     }
-
-
   }
 
   addMarkOnMap(item,mapEle){
@@ -209,9 +212,7 @@ export class Lista {
         let marker = new google.maps.Marker({
           position: new google.maps.LatLng(coordinate.latitude, coordinate.longitude),
           map: this.map
-        });
-        
-      
+        });    
 
         marker.addListener('click', () => {
           infoWindow.open(this.map, marker);
@@ -220,8 +221,6 @@ export class Lista {
 
       }
       
-    
-
     google.maps.event.addListenerOnce(this.map, 'idle', () => {
       mapEle.classList.add('show-map');
     });
@@ -337,7 +336,7 @@ export class Lista {
 
 //END MAP
 
-  
+  // FILTROS 
   moragas(item){
 
     return item.moraga === true;
@@ -355,37 +354,29 @@ export class Lista {
   filterList(filter){
     this._ngZone.run(() => {
       this.estados  = this.all_estados;
+      let aux ;
+      
       if(filter === 'adaptadas'){
-        let aux ;
+
         aux= this.items.filter(this.adaptadas);
-        this.estados = [];
-
-        for(var i = 0; i< aux.length;i++){
-          this.estados.push(this.all_estados.filter(this.childForItem(aux[i].idItem))[0]);
-        }          
-        
-
+           
       }else if (filter === 'Q') {
-        //this.estados = this.items.filter(this.Q);
-          let aux ;
-        aux = this.items.filter(this.Q);
-        this.estados = [];
-        for(var i = 0; i< aux.length;i++){
-          this.estados.push(this.all_estados.filter(this.childForItem(aux[i].idItem))[0]);
-        }          
-      }else if (filter === 'moragas') {
-       
-          let aux ;
-        aux = this.items.filter(this.moragas);
-        this.estados = [];
-        for(var i = 0; i< aux.length;i++){
-          this.estados.push(this.all_estados.filter(this.childForItem(aux[i].idItem))[0]);
-        }          
-      }
-      console.log(this.estados);
 
+        aux = this.items.filter(this.Q);
+       
+      }else if (filter === 'moragas') {
+               
+        aux = this.items.filter(this.moragas);
+           
+      }
+       this.estados = [];
+       for(var i = 0; i< aux.length;i++){
+         this.estados.push(this.all_estados.filter(this.childForItem(aux[i].idItem))[0]);
+       }     
     })
   }
+  
+  // END FILTROS
 
   childForItem(idItem){
     console.log("idItem",idItem);
