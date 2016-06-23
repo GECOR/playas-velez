@@ -279,7 +279,7 @@ class ModalsContentPage {
   //public isOpened: boolean;
   public dateValue: string;
   public viewValue: string;
-  public days: Array<Object>;
+  public days: any;//Array<Object>;
   public dayNames: Array<string>;
   private el: any;
   private date: any;
@@ -351,13 +351,7 @@ class ModalsContentPage {
             MM : '%d meses',
             y : 'un año',
             yy : '%d años'
-        },
-        ordinalParse : /\d{1,2}º/,
-        ordinal : '%dº'/*,
-        week : {
-            dow : 1, // Monday is the first day of the week.
-            doy : 4  // The week that contains Jan 4th is the first week of the year.
-        }*/
+        }        
     });
 
     this.viewContainer = viewContainer;
