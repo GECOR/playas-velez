@@ -58,7 +58,9 @@
         <div *ngIf="(idTypeItem == 1006 || idTypeItem == 1015)  && loadedEstados">
           <ion-card list *ngFor="let estado of estados" (click)="itemTapped($event,estado)">
             <img [src]="estado['backgroundImage']"><img>
-            <img [src]="estado['bandera']" bandera-img>
+            <div bandera-img-div>
+              <img [src]="estado['bandera']" bandera-img>
+            </div>
             
           </ion-card>
         </div>
