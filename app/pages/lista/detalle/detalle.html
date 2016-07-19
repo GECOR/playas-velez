@@ -17,12 +17,52 @@
   </ion-slides>
     <ion-card-content>
     <div  [innerHTML]="item.description"></div>
+    <br>
+    <div *ngFor="let coordinate of item.coordinates; let i = index">
+      <h2>
+        <b [innerHTML]="coordinate.letraMayus + ' - ' + coordinate.title + ':'"></b>
+        <p [innerHTML]="coordinate.description"></p>
+        <!--<b>{{labelMarker[i]}} - {{coordinate.title}}: </b> {{coordinate.description}}-->
+      </h2>
+      <!--<h2>{{coordinate.description}}</h2>-->
+    </div>
     </ion-card-content>
+    <div *ngIf="item.web || item.facebook || item.twitter || item.youtube || item.email" id="detalleButtons">
+      <ion-grid>
+        <ion-row>
+          <ion-col *ngIf="item.web" width-20 class="detalleButtonsCol">
+            <button primary clear item-left (click)="openWeb(item.web)">
+              <ion-icon name="link"></ion-icon>
+            </button>
+          </ion-col>
+          <ion-col *ngIf="item.facebook" width-20 class="detalleButtonsCol">
+            <button primary clear item-left (click)="openWeb(item.facebook)">
+              <ion-icon name="logo-facebook"></ion-icon>
+            </button>
+          </ion-col>
+          <ion-col *ngIf="item.twitter" width-20 class="detalleButtonsCol">
+            <button primary clear item-left (click)="openWeb(item.twitter)">
+              <ion-icon name="logo-twitter"></ion-icon>
+            </button>
+          </ion-col>
+          <ion-col *ngIf="item.youtube" width-20 class="detalleButtonsCol">
+            <button primary clear item-left (click)="openWeb(item.youtube)">
+              <ion-icon name="logo-youtube"></ion-icon>
+            </button>
+          </ion-col>
+          <ion-col *ngIf="item.email" width-20 class="detalleButtonsCol">
+            <button primary clear item-left (click)="openWeb('mailto:' + item.email)">
+              <ion-icon name="mail"></ion-icon>
+            </button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
     <ion-item>
-      <button *ngIf="item.web" primary clear item-left (click)="openWeb()">
+      <!--<button *ngIf="item.web" primary clear item-left (click)="openWeb()">
         <ion-icon name="link"></ion-icon>
         <div>Web</div>
-      </button>
+      </button>-->
       <button primary clear item-right (click)="share(item.description,item.title,item.images[0].image,item.web)">
         <ion-icon name="share"></ion-icon>
         <div>{{compartir}}</div>
@@ -33,8 +73,8 @@
     </ion-item>
   </ion-card>
 
-  <ion-card class="ion-card-map">
-    <div id="mapDetail" ></div>
+  <ion-card class="ion-card-map" *ngIf="item.coordinates[0] != undefined">
+    <div id="mapDetail"></div>
     <ion-item>
       <ion-icon name="map" item-left large ></ion-icon>
       <h2>{{item.title}}</h2>

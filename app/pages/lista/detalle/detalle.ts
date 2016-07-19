@@ -33,6 +33,9 @@ export class DetallePage {
   moraga:string;
   date : string;
   items : any;
+  positionImages : number;
+  labelMarker : string[] = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
+  labelIndex : number = 0;
   
   constructor(private resolver: ComponentResolver,private platform: Platform,private nav: NavController,private params: NavParams, private zone: NgZone,private translator: Translator){
     let loading = this.params.get('loading');   
@@ -54,30 +57,32 @@ export class DetallePage {
     this.map = null;
     this.markerArray = [];
 
+    this.positionImages = 0;
+
    
         this.initGeolocation();
-     if(this.item.coordinates[0]){
-       let latlng = new google.maps.LatLng(this.item.coordinates[0] && this.item.coordinates[0].latitude, this.item.coordinates[0] && this.item.coordinates[0].longitude);
-    this.geocoderService = new google.maps.Geocoder;
-    this.geocoderService && this.geocoderService.geocode({'location': latlng}, (results, status) => {
-      if (status === google.maps.GeocoderStatus.OK) {
-        if (results[0]) {
-          this.endAddress = results[0].formatted_address;
-        } else {
-          window.alert('No results found');
+        if (this.item.coordinates[0] != undefined){
+          if(this.item.coordinates[0]){
+            let latlng = new google.maps.LatLng(this.item.coordinates[0] && this.item.coordinates[0].latitude, this.item.coordinates[0] && this.item.coordinates[0].longitude);
+            this.geocoderService = new google.maps.Geocoder;
+            this.geocoderService && this.geocoderService.geocode({'location': latlng}, (results, status) => {
+            if (status === google.maps.GeocoderStatus.OK) {
+              if (results[0]) {
+                this.endAddress = results[0].formatted_address;
+              } else {
+                window.alert('No results found');
+              }
+            } else {
+              window.alert('Geocoder failed due to: ' + status);
+            }
+            setTimeout(() => {
+              loading.dismiss();
+            }, 500);
+          });
         }
-      } else {
-        window.alert('Geocoder failed due to: ' + status);
-      }
-      setTimeout(() => {
+      }else{
         loading.dismiss();
-      }, 500);
-    });
-     }
-    
-
-
-
+      }
   }
  
 
@@ -89,29 +94,59 @@ export class DetallePage {
 
     let mapOptions = {
         center:  new google.maps.LatLng(this.item.coordinates[0] && this.item.coordinates[0].latitude,this.item.coordinates[0] && this.item.coordinates[0].longitude),
-        zoom: 16,
-        mapTypeId: google.maps.MapTypeId.ROADMAP,
+        zoom: 10, //16
+        mapTypeId: google.maps.MapTypeId.SATELLITE,
         disableDefaultUI: true
     }
     this.map = new google.maps.Map(document.getElementById("mapDetail"), mapOptions);
     if(this.item.coordinates[0]){
       this.item.coordinates.forEach(coordinate => {
+        console.log("|----------------------------------------ARDRUINO MOLA------------------------------------------------|");
+        console.log(coordinate);
+        console.log("|----------------------------------------------------------------------------------------|");
       let infoWindow = new google.maps.InfoWindow({
         //content: `<h5>${markerData.name}</h5>`
-        content: `<ion-item>
-                    <ion-thumbnail>
+        content: `<ion-card>
+                    <!--<ion-thumbnail>
                       <img src="${this.item.images[0].image}">
-                    </ion-thumbnail>
-                    <h2>${this.item.title}</h2>
-                    <span>${this.item.dates[0] ? new Date(this.item.dates[0] && this.item.dates[0].startDate*1000).toLocaleString() : ""}</span><br>
-                    <span>${this.item.telefono ? this.item.telefono : ""}</span><br>
-                    <span>${this.item.email ? this.item.email : ""}</span><br>
-                  </ion-item>`
+                    </ion-thumbnail>-->
+                    <ion-item class="item">
+                      <ion-icon item-left="" large="" name="map" role="img" class="ion-ios-information-circle item-icon" aria-label="map"></ion-icon>
+                      <div class="item-inner">
+                        <div class="input-wrapper">
+                          <ion-label>
+                            <h3>${coordinate.title}</h3>
+                            <p class="description">${coordinate.description && coordinate.description.substring(0,50) + "..."}</p>
+                          </ion-label>
+                        </div>
+                      </div>
+                    </ion-item>
+                    <button onclick="window.location.href='http://maps.google.com/maps?q=loc:${coordinate.latitude},${coordinate.longitude}'" clear="" item-right="" primary="" class="disable-hover item-button button button-clear button-clear-primary button-icon-left">
+                      <span class="button-inner">
+                        <ion-icon name="navigate" role="img" class="ion-ios-navigate" aria-label="navigate"></ion-icon>
+                        Ir al lugar
+                      </span>
+                    </button>
+                  </ion-card>`
       });
+      //labels: this.labels[this.labelIndex++ % this.labels.length]
+      /*var marker2 = new google.maps.MarkerOptions({
+        draggable: true,
+        labelContent: "$425K",
+        labelAnchor: new google.maps.Point(22, 0),
+        labelClass: "labels", // the CSS class for the label
+        labelStyle: {opacity: 0.75}
+      });*/
+
+      //this.labelMarker = '10'; //this.positionImages.toString();
+
       let marker = new google.maps.Marker({
         position: new google.maps.LatLng(coordinate.latitude, coordinate.longitude),
-        map: this.map
+        map: this.map,
+        label: coordinate.letraMayus //this.labelMarker[this.positionImages]
       });
+
+      this.positionImages  = this.positionImages + 1;
 
       marker.addListener('click', () => {
         infoWindow.open(this.map, marker);
@@ -139,13 +174,15 @@ export class DetallePage {
       (position) => {
 
         this.latLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
-
-        this.geocoderService.geocode({'location': this.latLng}, (results, status) => {
+        if (this.latLng != undefined){
+          this.geocoderService.geocode({'location': this.latLng}, (results, status) => {
           if (status === google.maps.GeocoderStatus.OK) {
             if (results[0]) {
               this.startAddress = results[0].formatted_address;
               this.loadMap();
-              this.calculateAndDisplayRoute();
+              if (this.item.coordinates.length==1){
+                this.calculateAndDisplayRoute();
+              }
             } else {
               window.alert('No results found');
             }
@@ -153,6 +190,7 @@ export class DetallePage {
             window.alert('Geocoder failed due to: ' + status);
           }
         });
+        }
       },
       (error) => {
         this.loadMap();
@@ -233,8 +271,8 @@ export class DetallePage {
     }
   }
   
-  openWeb(){
-    InAppBrowser.open(this.item.web,'_system', 'location=no')
+  openWeb(url){
+    InAppBrowser.open(url,'_system', 'location=no')
   }
   
   openPlayaAsociada(idItem){

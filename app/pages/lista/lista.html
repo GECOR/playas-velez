@@ -43,15 +43,16 @@
             <ion-option value="moragas">{{moragass}}</ion-option>
           </ion-select>
         </ion-item>
-        <div *ngIf="idTypeItem != 1006 && idTypeItem != 1015">
+        <div *ngIf="idTypeItem != 1006 && idTypeItem != 1015 && idTypeItem != 1012">
           <ion-card *ngFor="let item of items" (click)="itemTapped($event,item)">
             <ion-item >
               <ion-thumbnail item-left class="item-image">
                 <img [src]="item['images'][0].image" class="item-image">
               </ion-thumbnail>
-              <h2>{{item.title}}</h2>
+              <h2> <b>{{item.title}} </b></h2>
               <p>{{item.dates[0] && item.dates[0].date*1000 | date: 'dd/MM/yyyy'}}</p>
-              <p class="description"> {{item.description && item.description.substring(0,100) + "..."}}</p>
+              <p class="description" [innerHTML]="item.description"></p>
+              <!--<p class="description"> {{item.description && item.description.substring(0,100) + "..."}}</p>-->
             </ion-item>
             </ion-card>
         </div>
@@ -63,6 +64,19 @@
             </div>
             
           </ion-card>
+        </div>
+        <div *ngIf="(idTypeItem == 1012)">
+          <ion-card *ngFor="let item of items" (click)="itemTapped($event,item)">
+            <img [src]="item['images'][0].image">
+            <!--<ion-item >
+              <ion-thumbnail item-left class="item-image">
+                <img [src]="item['images'][0].image" class="item-image">
+              </ion-thumbnail>
+              <h2> <b>{{item.title}} </b></h2>
+              <p>{{item.dates[0] && item.dates[0].date*1000 | date: 'dd/MM/yyyy'}}</p>
+              <p class="description" [innerHTML]="item.description"></p>
+            </ion-item>-->
+            </ion-card>
         </div>
         
     </ion-list>

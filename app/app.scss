@@ -33,8 +33,8 @@
 
   ion-card p.advanced-background-title {
     position: absolute;
-    top: 32%;
-    font-size: 2.0em;
+    top: 30%;
+    font-size: 1.5em;
     width: 100%;
     font-weight: bold;
     color: #fff !important;
@@ -65,9 +65,14 @@
   }
   
   .toolbar-background{
-    background-color:rgba(55, 165, 54, .9) !important; // for bg color
+    //background-color:rgba(55, 165, 54, .9) !important; // for bg color
+    background-color: #F88B30 !important;
   }
  
   .bar-button-default{
     color: white !important;
+  }
+
+  [width-16]{
+    width: 16.66px;
   }
