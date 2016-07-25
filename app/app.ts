@@ -47,11 +47,11 @@ import {Banderas} from './providers/banderas';
         });
         push.on('registration', (data) => {
           console.log(data.registrationId);
-          alert(data.registrationId.toString());
+          //alert(data.registrationId.toString());
         });
         push.on('notification', (data) => {
           console.log(data);
-          alert("Hi, Am a push notification");
+          //alert("Hi, Am a push notification");
         });
         push.on('error', (e) => {
           console.log(e.message);

@@ -1,6 +1,6 @@
 /// <reference path="../../../../../typings/tsd.d.ts"/>
 
-import {Page, NavController, NavParams,Modal,Platform,ViewController,Alert} from 'ionic-angular';
+import {Page, NavController, NavParams,Modal,Platform,ViewController,Alert,Loading} from 'ionic-angular';
 import {Parser} from '../../../../providers/parser';
 import {Translator} from '../../../../providers/translator';
 import {Events} from 'ionic-angular';
@@ -8,6 +8,8 @@ import {Component, ViewContainerRef, Input, Output, EventEmitter, AfterViewInit,
 import {NgIf, NgFor, NgClass, NgModel, FORM_DIRECTIVES, ControlValueAccessor} from '@angular/common';
 import * as moment_ from 'moment';
 import {Http,Headers, RequestOptions} from '@angular/http';
+import {Inicio} from '../../../../pages/inicio/inicio';
+
 const moment: moment.MomentStatic = (<any>moment_)['default'] || moment_;
 
 @Component({
@@ -79,9 +81,40 @@ export class Moraga{
 
   }
 
+  onPageWillLeave(){
+    this.backButtonAction();
+  }
+
+  backButtonAction(){
+    let alert = Alert.create({
+      title: 'Atención',
+      message: '¿Desea cancelar la moraga?',
+      buttons: [
+        {
+          text: 'NO',
+          role: 'cancel',
+          handler: () => {
+            //Do nothing
+          }
+        },
+        {
+          text: 'SI',
+          handler: () => {
+            this.nav.push(Inicio);
+          }
+        }
+      ]
+    });
+    this.nav.present(alert);
+  }
+
 
   onSubmit(){
     if(this.checkFields()){
+      let loading = Loading.create({
+        content: "Please wait..."
+      });
+      this.nav.present(loading);
       this.newMoraga.PlayaID = this.playa.id;
     this.newMoraga.Playa = this.playa.nombre;
       console.log(this.playa);
@@ -89,11 +122,40 @@ export class Moraga{
       let headers = new Headers({ 'Content-Type': 'application/json' });
       let options = new RequestOptions({ headers: headers });
       this.http.post('http://gecorsystem.com/ApiVelez/api/Moraga/',body,options).subscribe(res =>{
+          console.log(res);
+          loading.dismiss();
+          let result = JSON.parse(res.text());
+          if(result.rowsAffected > 0){
+            let alert = Alert.create({
+              title: 'Mensaje',
+              message: 'Moraga solicitada correctamente',
+              buttons: [
+                {
+                  text: 'OK',
+                  role: 'cancel',
+                  handler: () => {
+                    //this.nav.pop();
+                    this.nav.push(Inicio);
+                  }
+                }
+              ]
+            });
+            this.nav.present(alert);
+            
+            /*this.showAlert("Mensaje", "Moraga solicitada correctamente" , "OK");
+            this.nav.pop();*/
+          }else{
+            this.showAlert("ERROR", "No se ha podido solicitar la moraga. " + result.message , "OK");
+          }
     })
     }
     
   }
   
+  isNumeric(n) {
+    return !isNaN(parseFloat(n)) && isFinite(n);
+  }
+
   checkDNI(dni: String){
     dni = dni.toUpperCase();
     if(dni.length !== 9){
@@ -398,7 +460,7 @@ class ModalsContentPage {
     if(moment(date).startOf('day').diff(moment().startOf('day'),'days') <= 5){
       let alert = Alert.create({
         title: 'Error',
-        message: this.params.get('translator')['VALIDATE_FECHA'],
+        message: this.params.get('translator')['VALIDATE_DIA'],
         buttons: [
           {
             text: 'Ok',
