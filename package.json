@@ -2,16 +2,16 @@
   "name": "playas-2016",
   "description": "playas-2016: An Ionic project",
   "dependencies": {
-    "@angular/common": "2.0.0-rc.1",
-    "@angular/compiler": "2.0.0-rc.1",
-    "@angular/core": "2.0.0-rc.1",
-    "@angular/http": "2.0.0-rc.1",
-    "@angular/platform-browser": "2.0.0-rc.1",
-    "@angular/platform-browser-dynamic": "2.0.0-rc.1",
-    "@angular/router": "2.0.0-rc.1",
+    "@angular/common": "^2.0.0-rc.3",
+    "@angular/compiler": "^2.0.0-rc.3",
+    "@angular/core": "^2.0.0-rc.3",
+    "@angular/http": "^2.0.0-rc.3",
+    "@angular/platform-browser": "^2.0.0-rc.3",
+    "@angular/platform-browser-dynamic": "^2.0.0-rc.3",
+    "@angular/router": "^2.0.0-rc.2",
     "angular2-jwt": "^0.1.15",
     "es6-shim": "0.35.0",
-    "ionic-angular": "^2.0.0-beta.8",
+    "ionic-angular": "^2.0.0-beta.10",
     "ionic-native": "^1.1.0",
     "ionicons": "3.0.0",
     "moment": "^2.12.0",
@@ -49,7 +49,7 @@
     "cordova-plugin-network-information"
   ],
   "cordovaPlatforms": [
-    "cordova-ios@4.0.0",
-    "android@5.0.0"
+    "ios",
+    "android"
   ]
 }

@@ -34,7 +34,7 @@ import {Banderas} from './providers/banderas';
     setTimeout(function() {
     Splashscreen.hide();
         }, 100);
-       var push = Push.init({
+       /*var push = Push.init({
           android: {
             senderID: "1060313159714"
           },
@@ -55,7 +55,7 @@ import {Banderas} from './providers/banderas';
         });
         push.on('error', (e) => {
           console.log(e.message);
-        });
+        });*/
     });
   }
 }

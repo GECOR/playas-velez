@@ -1,17 +1,14 @@
 
-<ion-navbar *navbar hideBackButton class="show-navbar android-attr primary-color">
-  
-      
-      
-  <!--<ion-title> <img src="img/logoescudoAyto-blanco.png" style="vertical-align:middle;"> Vélez-Málaga</ion-title>-->
-  <ion-title>Playas Vélez-Málaga</ion-title>
-</ion-navbar>
-
+<ion-header>
+  <ion-navbar hideBackButton>
+    <!--<ion-title> <img src="img/logoescudoAyto-blanco.png" style="vertical-align:middle;"> Vélez-Málaga</ion-title>-->
+    <ion-title>Playas Vélez-Málaga</ion-title>
+  </ion-navbar>
+</ion-header>
 
 
   <ion-content>
     <ion-list >
-
     <ion-row home *ngFor="let p of importancia1">
       <ion-col home>
         <ion-card  home class="advanced-background" (click)="openPage(p[0])">

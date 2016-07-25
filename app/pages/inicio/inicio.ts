@@ -7,7 +7,7 @@ import {Translator} from '../../providers/translator';
 import {NgZone, Component,ViewChild} from '@angular/core';
 import {Events} from 'ionic-angular';
 import {Banderas} from '../../providers/banderas';
-import {InAppBrowser,Network,Connection} from 'ionic-native';
+import {InAppBrowser, Network} from 'ionic-native';//Connection
 @Component({
   templateUrl: 'build/pages/inicio/inicio.html',
   providers: [Parser,Translator,Banderas]
@@ -52,7 +52,7 @@ export class Inicio {
     }
 
 
-    if(Network.connection != Connection.NONE){
+    if(Network.connection != 'No network connection' ){//Connection.NONE
       
       this.downloadData();  
           
