@@ -18,7 +18,7 @@
 
   </ion-slides>
     <ion-card-content>
-    <div  [innerHTML]="item.description"></div>
+    <div [ngClass]="classPlayas(item)" [innerHTML]="item.description"></div>
     <br>
     <div *ngFor="let coordinate of item.coordinates; let i = index">
       <h2>

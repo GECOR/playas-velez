@@ -166,7 +166,9 @@ export class DetallePage {
 
   }
 
-
+  classPlayas(item){
+    return 'idItem' + item.idItem;
+  }
 
   initGeolocation() {
     let options = {maximumAge: 5000, timeout: 15000, enableHighAccuracy: true};
