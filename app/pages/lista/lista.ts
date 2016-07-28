@@ -8,10 +8,12 @@ import {Banderas} from '../../providers/banderas';
 import {Inicio} from './../inicio/inicio';
 import {Moraga} from './detalle/moraga/moraga';
 import {Component} from '@angular/core';
+import {SanitizeHtml} from '../../pipes/sanitize';
 
 @Component({
   templateUrl: 'build/pages/lista/lista.html',
-  providers: [Parser,Banderas]
+  providers: [Parser,Banderas],
+  pipes: [SanitizeHtml]
 })
 export class Lista {
     tit: string
@@ -104,7 +106,7 @@ export class Lista {
       this.directionsService = new google.maps.DirectionsService;
       this.directionsDisplay = new google.maps.DirectionsRenderer;
       // Llamamos al geolocalizador
-      this.initGeolocation();
+      //this.initGeolocation();
       
 
   }
@@ -112,7 +114,7 @@ export class Lista {
   showMap() {
     setTimeout(()=>{
       this.loadMap()
-    },1000)
+    },2000)
   }
 
 //MAP

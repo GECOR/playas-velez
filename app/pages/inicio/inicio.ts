@@ -29,6 +29,8 @@ export class Inicio {
   estados: any;
   typeItems :any;
   loading : any;
+  viewInScreen: boolean;
+  alert: any;
   constructor(
     private platform: Platform,
     private http: Http,
@@ -39,6 +41,13 @@ export class Inicio {
     public events: Events,
     private nav: NavController) {
 
+    platform.registerBackButtonAction((event) => {
+        if(this.viewInScreen){
+          this.backButtonAction();
+        }else{
+          this.nav.pop();
+        }   
+      }, 100);
       
     this.loading = Loading.create({
     content: ''
@@ -106,6 +115,19 @@ export class Inicio {
       });
     
   }
+
+  ionViewLoaded(){
+    this.viewInScreen = true;
+  }
+
+  ionViewWillEnter(){
+    this.viewInScreen = true;
+  }
+
+  ionViewDidLeave(){
+    this.viewInScreen = false;
+  }
+
   getDBLocal(){
     if(localStorage.getItem('banderas')){
        
@@ -247,7 +269,7 @@ export class Inicio {
         "loading": this.loading,
         "typeItems" : this.typeItems
       });
-      },300)
+      },100)
   
     }else{
      this.loading = Loading.create({content:''});
@@ -263,9 +285,41 @@ export class Inicio {
         "loading": this.loading,
         "typeItems" : this.typeItems
       });
-      },300)
+      },100)
       
     }
 
+  };
+
+  /*onPageWillLeave(){
+    this.backButtonAction();
+  }*/
+
+  backButtonAction(){
+    if(this.alert == undefined){
+      this.alert = Alert.create({
+      title: 'Atención',
+      message: '¿Desea salir de la aplicación?',
+      buttons: [
+        {
+          text: 'NO',
+          role: 'cancel',
+          handler: () => {
+            //Do nothing
+            this.alert = undefined;
+          }
+        },
+        {
+          text: 'SI',
+          handler: () => {
+            //this.nav.push(Inicio);
+            this.alert = undefined;
+            this.platform.exitApp();
+          }
+        }
+      ]
+    });
+    this.nav.present(this.alert);
+    }
   }
 }
