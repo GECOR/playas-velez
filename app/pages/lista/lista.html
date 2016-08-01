@@ -51,7 +51,8 @@
                 <img [src]="item['images'][0].image" class="item-image">
               </ion-thumbnail>
               <h2> <b>{{item.title}} </b></h2>
-              <p>{{item.dates[0] && item.dates[0].date*1000 | date: 'dd/MM/yyyy'}}</p>
+              <!--<p>{{item.dates[0] && item.dates[0].date*1000 | date: 'dd/MM/yyyy'}}</p>-->
+              <p *ngIf="item.dates[0] != undefined">{{parseDate(item.dates[0].date*1000)}}</p>
               <p class="description" [innerHTML]="item.description | sanitizeHtml"></p>
               <!--<p class="description"> {{item.description && item.description.substring(0,100) + "..."}}</p>-->
             </ion-item>
